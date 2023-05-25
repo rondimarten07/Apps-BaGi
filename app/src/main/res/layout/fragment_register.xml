@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.register.RegisterFragment"
+    android:background="@drawable/bg_register">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/iv_register"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:src="@drawable/logo_bagi"
+            android:layout_marginTop="@dimen/dimen_32dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvWelcomeTitle"
+            android:text="@string/label_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimen_24sp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_32dp"
+            style="@style/StoryTextContent.Title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_register"/>
+
+        <TextView
+            android:id="@+id/tvWelcomeDesc"
+            android:text="@string/label_register_welcome_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:layout_marginHorizontal="@dimen/dimen_16dp"
+            android:textSize="@dimen/dimen_16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWelcomeTitle" />
+
+        <TextView
+            android:id="@+id/tvNameTitle"
+            style="@style/StoryTextContent.Medium"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_32dp"
+            android:text="@string/label_nama"
+            android:textSize="@dimen/dimen_14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWelcomeDesc" />
+
+        <com.rondi.bagiapp.ui.customview.StoryDefaultEditText
+            android:id="@+id/ed_register_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:background="@drawable/bg_edit_text"
+            android:maxLines="1"
+            android:padding="@dimen/dimen_16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvNameTitle"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/tvEmailTitle"
+            style="@style/StoryTextContent.Medium"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:text="@string/label_email"
+            android:textSize="@dimen/dimen_14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_register_name" />
+
+        <com.rondi.bagiapp.ui.customview.CustomEmailEditText
+            android:id="@+id/ed_register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/dimen_16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvEmailTitle"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="16dp" />
+
+
+        <TextView
+            android:id="@+id/tvNoHpTitle"
+            style="@style/StoryTextContent.Medium"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_32dp"
+            android:text="@string/label_no_hp"
+            android:textSize="@dimen/dimen_14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_register_email" />
+
+        <com.rondi.bagiapp.ui.customview.StoryDefaultEditText
+            android:id="@+id/ed_nohp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:background="@drawable/bg_edit_text"
+            android:maxLines="1"
+            android:padding="@dimen/dimen_16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvNoHpTitle"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="16dp" />
+
+
+        <TextView
+            android:id="@+id/tvUsername"
+            style="@style/StoryTextContent.Medium"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_32dp"
+            android:text="@string/label_username"
+            android:textSize="@dimen/dimen_14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_nohp" />
+
+        <com.rondi.bagiapp.ui.customview.StoryDefaultEditText
+            android:id="@+id/ed_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:background="@drawable/bg_edit_text"
+            android:maxLines="1"
+            android:padding="@dimen/dimen_16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvUsername"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/tvPasswordTitle"
+            style="@style/StoryTextContent.Medium"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:text="@string/label_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_username" />
+
+        <com.rondi.bagiapp.ui.customview.CustomPasswordEditText
+            android:id="@+id/ed_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="textPassword"
+            android:padding="@dimen/dimen_16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvPasswordTitle"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <TextView
+            android:id="@+id/tvPasswordConfirmationTitle"
+            style="@style/StoryTextContent.Medium"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:text="@string/label_confirmation_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ed_register_password" />
+
+        <com.rondi.bagiapp.ui.customview.CustomPasswordEditText
+            android:id="@+id/ed_register_password_confirmation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_8dp"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="textPassword"
+            android:padding="@dimen/dimen_16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvPasswordConfirmationTitle"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRegister"
+            android:text="@string/action_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_16dp"
+            android:background="@drawable/bg_button"
+            android:translationZ="0dp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/ed_register_password_confirmation" />
+
+        <LinearLayout
+            android:id="@+id/layoutTextLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister">
+
+            <TextView
+                android:id="@+id/tvIsHaveAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_16dp"
+                android:text="@string/label_is_have_account"/>
+
+            <TextView
+                android:id="@+id/tvToLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_marginStart="@dimen/dimen_4dp"
+                android:text="@string/action_to_login"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/bg_dim"
+            android:visibility="gone"
+            android:background="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="@dimen/dimen_2dp"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:elevation="@dimen/dimen_4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

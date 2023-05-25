@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">BaGiApp</string>
+
+    <string name="error_empty_name">Please insert your name</string>
+    <string name="error_empty_email">Please insert your email</string>
+    <string name="error_invalid_email">The email is invalid</string>
+    <string name="error_empty_password">Please insert your password</string>
+    <string name="label_is_have_account">Already have an account ?</string>
+    <string name="error_password_more_8">Password must more than 8 character</string>
+
+    <string name="title_onboard_1">Aplikasi untuk berbagi barang bekas</string>
+    <string name="desc_onboard_1">Aplikasi ini berguna untuk menyalurkan barang yang sudah tidak digunakan untuk di gunakan kembali oleh orang lain</string>
+    <string name="title_onboard_2">Berbagi itu indah</string>
+    <string name="desc_onboard_2">Barang bekas yang masih layak pakai lebih baik disalurkan ke orang yang membutuhkan, untuk digunakan kembali</string>
+    <string name="title_onboard_3">Nikmatin aplikasi untuk saling berbagi</string>
+    <string name="desc_onboard_3">Silahkan daftarkan akunmu untuk bisa menggunakan aplikasi ini !</string>
+    <string name="onboard_next">Next</string>
+    <string name="onboard_started">Get Started</string>
+
+    <string name="label_login_welcome_desc">Please login so you can enjoy the full experience</string>
+    <string name="action_to_register">Register here</string>
+    <string name="label_register_welcome_desc">Register yourself using the BaGi application</string>
+    <string name="action_to_login">Login here</string>
+
+    <string name="action_register">Sign up</string>
+
+    <string name="label_nama">Full Name</string>
+    <string name="label_btn_login">Sign in</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Password</string>
+    <string name="label_welcome">Sign In</string>
+    <string name="label_is_havent_account">Don\'t have an account ?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_register">Please create your account!</string>
+    <string name="label_no_hp">No HP</string>
+    <string name="label_username">Username</string>
+    <string name="label_confirmation_password">confirmation password</string>
+
+</resources>
