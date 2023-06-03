@@ -112,7 +112,7 @@
 }
 ```
 
-**Edit Profile**
+# Edit Profile
 **Path :**
 
 > /Profile
@@ -150,7 +150,7 @@ add new data:
 }
 ```
 
-**Upload Avatar User**
+# Upload Avatar User
 **Path :**
 
 > /avatar
@@ -185,7 +185,7 @@ add new data:
 }
 ```
 
-**Tampilan Avatar User**
+# Tampilan Avatar User
 **Path :**
 
 > /avatar/{filename}
