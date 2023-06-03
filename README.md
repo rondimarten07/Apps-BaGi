@@ -2,7 +2,8 @@
 
 # API Endpoint
 
-**Register**
+# Register
+
 **Path :**
 
 > /register
@@ -13,7 +14,7 @@
 
 **Request Body :**
 
-> - name as `string`
+> - nama as `string`
 > - email as `string`
 > - phone as `string`
 > - username as `string`, must be unique
@@ -41,7 +42,8 @@
 }
 ```
 
-**Login**
+# Login
+
 **Path :**
 
 > /login
@@ -61,7 +63,7 @@
 {
   "error": false,
   "loginResult": {
-    "name": "Indah",
+    "nama": "Indah",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5kb2UifQ.5_HcBc8Qzc365MImOXwWMze8cip__Hu-pbwNEXrAEX4",
     "userId": 35
   },
@@ -78,7 +80,8 @@
 }
 ```
 
-**Profile**
+# Profile
+
 **Path :**
 
 > /Profile
@@ -96,12 +99,15 @@
 ```json
 {
   "error": false,
+  "message": "User profile retrieved successfully!",
   "profile": {
     "email": "indah@example.com",
     "id": 4,
     "nama": "Indah",
     "phone": "0895",
-    "username": "indah123"
+    "username": "indah123",
+    "loc": "Bandung, Jawa Barat",
+    "avatar": "filename"
   }
 }
 ```
@@ -122,11 +128,11 @@
 **Request Body :**
 add new data:
 
-> - name as `string`
-> - email as `string`
+> - nama as `string`
 > - phone as `string`
 > - username as `string`, must be unique
 > - password as `string`, must be at least 8 characters
+> - loc as `string`
 
 **Response :**
 
@@ -138,7 +144,8 @@ add new data:
     "id": 4,
     "nama": "New Name",
     "phone": "new phone",
-    "username": "new_username"
+    "username": "new_username",
+    "loc": "new_location"
   }
 }
 ```
@@ -193,6 +200,4 @@ add new data:
 
 **Response :**
 
-```json
-    file avatar
-```
+> avatar image
