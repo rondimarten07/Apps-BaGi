@@ -130,8 +130,6 @@ add new data:
 
 > - nama as `string`
 > - phone as `string`
-> - username as `string`, must be unique
-> - password as `string`, must be at least 8 characters
 > - loc as `string`
 > - avatar as file `png`, `jpg`, `jpeg`
 
