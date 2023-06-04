@@ -130,6 +130,7 @@ add new data:
 
 > - nama as `string`
 > - phone as `string`
+> - username as `string`
 > - loc as `string`
 > - avatar as file `png`, `jpg`, `jpeg`
 
