@@ -239,3 +239,33 @@ add new data:
     "message": "Items retrieved successfully"
 }
 ```
+
+# Upload item
+**Path :**
+
+> /upload_item
+
+**Method :**
+
+> `POST`
+
+**Header :**
+
+> `Authorization` : `Bearer <token>` > `Content-Type`: `application/json`
+
+**Request Body :**
+add new data:
+
+> - title as `string`
+> - description as `text`
+> - category_id as `INT` (1: Baju, 2:Tas, 3:Sepatu)
+> - images as file `png`, `jpg`, `jpeg`
+
+**Response :**
+
+```json
+{
+    "error": false,
+    "message": "Item uploaded successfully!"
+}
+```
