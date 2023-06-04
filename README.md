@@ -150,3 +150,87 @@ add new data:
   }
 }
 ```
+
+# Get All Items
+
+**Path :**
+
+> /items
+
+**Method :**
+
+> `GET`
+
+**Header :**
+
+> `Authorization` : `Bearer <token>`
+
+**Response :**
+
+```json
+{
+    "error": false,
+    "items": [
+        {
+            "createAt": "2023-05-31 15:30:34",
+            "description": "Baju ini masih layak pakai, saya baru beli bulan kemarin, ukurannya XL.",
+            "id": 1,
+            "kategori": "Baju",
+            "loc": "Kenten, Banyuasin",
+            "name": "indah",
+            "nohp": "0895",
+            "photoItems": [
+                "[\"https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png\"",
+                " \"https://storage.googleapis.com/zurv-bucket/Foshydog.avif\"",
+                " \"https://storage.googleapis.com/zurv-bucket/gambar1.jpg\"",
+                " \"https://storage.googleapis.com/zurv-bucket/image%20(8).png\"",
+                " \"https://storage.googleapis.com/zurv-bucket/channels4_profile.jpg\"]"
+            ],
+            "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
+            "title": "Baju"
+        }
+    ],
+    "message": "Items retrieved successfully"
+}
+```
+
+# Detail Item
+
+**Path :**
+
+> @app.route('/items/<int:item_id>'
+
+**Method :**
+
+> `GET`
+
+**Header :**
+
+> `Authorization` : `Bearer <token>`
+
+**Response :**
+
+```json
+{
+    "error": false,
+    "item": {
+        "createAt": "2023-05-31 15:30:34",
+        "description": "Baju ini masih layak pakai, saya baru beli bulan kemarin, ukurannya XL.",
+        "id": 1,
+        "kategori": "Baju",
+        "loc": "Kenten, Banyuasin",
+        "name": "indah",
+        "nohp": "0895",
+        "photoItems": [
+            "[\"https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png\"",
+            " \"https://storage.googleapis.com/zurv-bucket/Foshydog.avif\"",
+            " \"https://storage.googleapis.com/zurv-bucket/gambar1.jpg\"",
+            " \"https://storage.googleapis.com/zurv-bucket/image%20(8).png\"",
+            " \"https://storage.googleapis.com/zurv-bucket/channels4_profile.jpg\"]"
+        ],
+        "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
+        "title": "Baju"
+    },
+    "message": "Items retrieved successfully"
+}
+```
