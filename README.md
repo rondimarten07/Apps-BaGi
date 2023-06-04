@@ -198,7 +198,7 @@ add new data:
 
 **Path :**
 
-> @app.route('/items/<int:item_id>'
+> /items/<int:item_id>
 
 **Method :**
 
