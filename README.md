@@ -185,11 +185,9 @@ add new data:
             "name": "indah",
             "nohp": "0895",
             "photoItems": [
-                "[\"https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png\"",
-                " \"https://storage.googleapis.com/zurv-bucket/Foshydog.avif\"",
-                " \"https://storage.googleapis.com/zurv-bucket/gambar1.jpg\"",
-                " \"https://storage.googleapis.com/zurv-bucket/image%20(8).png\"",
-                " \"https://storage.googleapis.com/zurv-bucket/channels4_profile.jpg\"]"
+                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
+                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
+                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png"
             ],
             "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
             "title": "Baju"
