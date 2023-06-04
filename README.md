@@ -84,7 +84,7 @@
 
 **Path :**
 
-> /Profile
+> /profile
 
 **Method :**
 
@@ -101,21 +101,21 @@
   "error": false,
   "message": "User profile retrieved successfully!",
   "profile": {
+    "avatar": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
     "email": "indah@example.com",
-    "id": 4,
-    "nama": "Indah",
+    "id": 6,
+    "loc": "Kenten, Banyuasin",
+    "nama": "indah",
     "phone": "0895",
-    "username": "indah123",
-    "loc": "Bandung, Jawa Barat",
-    "avatar": "filename"
+    "username": "indah123"
   }
 }
 ```
 
-# Edit Profile
+**Edit Profile**
 **Path :**
 
-> /Profile
+> /profile
 
 **Method :**
 
@@ -133,71 +133,22 @@ add new data:
 > - username as `string`, must be unique
 > - password as `string`, must be at least 8 characters
 > - loc as `string`
+> - avatar as file `png`, `jpg`, `jpeg`
 
 **Response :**
 
 ```json
 {
+  "error": false,
   "message": "Profile updated successfully!",
   "profile": {
-    "email": "newemail@example.com",
-    "id": 4,
-    "nama": "New Name",
-    "phone": "new phone",
-    "username": "new_username",
-    "loc": "new_location"
+    "avatar": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
+    "email": "indah@example.com",
+    "id": 6,
+    "loc": "Kenten, Banyuasin",
+    "nama": "indah",
+    "phone": "0895",
+    "username": "indah123"
   }
 }
 ```
-
-# Upload Avatar User
-**Path :**
-
-> /avatar
-
-**Method :**
-
-> `POST`
-
-**Header :**
-
-> `Authorization` : `Bearer <token>` > `Content-Type`: `multipart/form-data`
-
-**Request Body :**
-
-> - `avatar` as `file 'png', 'jpg', 'jpeg', 'gif'`
-
-**Response :**
-
-```json
-{
-  "filename": "channels4_profile.jpg",
-  "message": "Avatar uploaded successfully!"
-}
-```
-
-**Errorr Response :**
-
-```json
-{
-  "error": true,
-  "message": "Invalid email or password!"
-}
-```
-
-# Tampilan Avatar User
-**Path :**
-
-> /avatar/{filename}
-
-**Method :**
-
-> `GET`
-
-**Header :**
-
-> `Authorization` : `Bearer <token>` > `Content-Type`: `multipart/form-data`
-
-**Response :**
-
-> avatar image
