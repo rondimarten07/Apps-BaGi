@@ -159,8 +159,8 @@ add new data:
 
 **Parameters**
 
-> page as int, optional
-> size as int, optional
+> - page as `int`, optional
+> - size as `int`, optional
 
 **Method :**
 
