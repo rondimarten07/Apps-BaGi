@@ -1,7 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BaGiApp</string>
 
     <string name="error_empty_name">Please insert your name</string>
+    <string name="error_empty_phone">Please insert your phone</string>
+    <string name="error_empty_username">Please insert your username</string>
     <string name="error_empty_email">Please insert your email</string>
     <string name="error_invalid_email">The email is invalid</string>
     <string name="error_empty_password">Please insert your password</string>
@@ -47,4 +49,46 @@
     <string name="search">Search</string>
     <string name="items_description" translatable="false">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsu....</string>
 
+    <string name="no_data">No Data</string>
+    <string name="items_not_found_error">Items Not Found</string>
+    <string name="message_unknown_state">Unknown State</string>
+    <string name="action_retry">Retry</string>
+    <string name="message_error_items" translatable="false">Items not found</string>
+    <string name="text_user_bagi">PENGGUNA BAGI</string>
+    <string name="btn_request">Request</string>
+    <string name="text_edit">Edit</string>
+
+
+    <string name="content_description_back_button">back button</string>
+    <string name="hint_no_hp_anda">No.Hp Anda</string>
+    <string name="content_description_image">Image</string>
+    <string name="text_approve_page">Approve Page</string>
+    <string name="text_update">Update</string>
+    <string name="hint_alamat">Alamat Anda</string>
+    <string name="text_alamat">Alamat</string>
+    <string name="text_no_hp">No Hp</string>
+    <string name="hint_email_anda">Email Anda</string>
+    <string name="text_email">Email</string>
+    <string name="hint_username_anda">Username Anda</string>
+    <string name="text_username">Username</string>
+    <string name="text_change_picture">Change Picture</string>
+    <string name="text_informasi_dasar">Informasi Dasar</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="title_message">Information</string>
+    <string name="message_logout_confirm">Are you sure want logout ?</string>
+    <string name="button_capture">Button Capture</string>
+    <string name="switch_camera">Switch Camera</string>
+    <string name="message_failed_take_picture">Failed to take picture</string>
+    <string name="message_failed_camera">Failed to bring up the camera</string>
+    <string name="message_not_permitted">Permission not granted</string>
+    <string name="hint_input_your_email">input your email</string>
+    <string name="hint_input_your_password">input your password</string>
+    <string name="hint_input_your_name">input your name</string>
+    <string name="hint_input_your_phone">input your phone</string>
+    <string name="hint_input_your_username">input your username</string>
+    <string name="label_description">Description</string>
+    <string name="message_succes_updates">successful updates</string>
+    <string name="message_failed_updates">update failed</string>
+    <string name="message_pick_image">Pick an image</string>
 </resources>

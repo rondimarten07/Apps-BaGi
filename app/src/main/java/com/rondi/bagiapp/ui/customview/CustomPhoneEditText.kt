@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
 import com.rondi.bagiapp.R.string
 
-class StoryDefaultEditText : AppCompatEditText {
+class CustomPhoneEditText : AppCompatEditText {
 
     constructor(context: Context) : super(context) {
         init()
@@ -28,9 +28,9 @@ class StoryDefaultEditText : AppCompatEditText {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val name = s.toString()
+                val phone = s.toString()
                 when {
-                    name.isBlank() -> error = context.getString(string.error_empty_name)
+                    phone.isBlank() -> error = context.getString(string.error_empty_phone)
                 }
             }
 

@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 class ItemsRepository @Inject constructor(private val itemsDataSource: ItemsDataSource) {
 
-    fun getAllStories(token: String): Flow<PagingData<ItemsEntity>> {
+    fun getAllItems(token: String): Flow<PagingData<ItemsEntity>> {
         return itemsDataSource.getAllItems(token).flowOn(Dispatchers.IO)
     }
 }

@@ -25,13 +25,13 @@ class ApiModule {
     @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext context: Context): ItemsDatabase {
-        return Room.databaseBuilder(context, ItemsDatabase::class.java, "BagiApp.db")
+        return Room.databaseBuilder(context, ItemsDatabase::class.java, "Bagi.db")
             .fallbackToDestructiveMigration()
             .build()
     }
 
     @Provides
-    fun provideStoryDao(database: ItemsDatabase): ItemsDao = database.ItemsDao()
+    fun provideItemsDao(database: ItemsDatabase): ItemsDao = database.ItemsDao()
 
     @Provides
     fun provideRemoteKeyDao(database: ItemsDatabase): RemoteKeysDao = database.getRemoteKeysDao()

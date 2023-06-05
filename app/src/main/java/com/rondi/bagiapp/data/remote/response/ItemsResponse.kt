@@ -1,29 +1,29 @@
 package com.rondi.bagiapp.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class ItemsResponse(
 
-	@field:SerializedName("listItems")
-	val listItems: List<ListItemsItem>,
-
 	@field:SerializedName("error")
-	val error: Boolean? = null,
+	val error: Boolean,
 
 	@field:SerializedName("message")
-	val message: String? = null
+	val message: String,
+
+	@field:SerializedName("items")
+	val items: List<ItemsItem>
 )
 
-data class ListItemsItem(
-
-	@field:SerializedName("photoUrl")
-	val photoUrl: String,
-
-	@field:SerializedName("createdAt")
-	val createdAt: String,
+@Parcelize
+data class ItemsItem(
 
 	@field:SerializedName("loc")
 	val loc: String,
+
+	@field:SerializedName("photoUrl")
+	val photoUrl: String,
 
 	@field:SerializedName("photoItems")
 	val photoItems: List<String>,
@@ -34,12 +34,18 @@ data class ListItemsItem(
 	@field:SerializedName("description")
 	val description: String,
 
-	@field:SerializedName("nohp")
-	val nohp: String,
-
 	@field:SerializedName("kategori")
 	val kategori: String,
 
+	@field:SerializedName("nohp")
+	val nohp: String,
+
 	@field:SerializedName("id")
-	val id: String
-)
+	val id: Int,
+
+	@field:SerializedName("title")
+	val title: String,
+
+	@field:SerializedName("createAt")
+	val createAt: String
+) : Parcelable

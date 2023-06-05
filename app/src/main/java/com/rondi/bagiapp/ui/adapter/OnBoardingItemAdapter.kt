@@ -6,16 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rondi.bagiapp.OnBoardingModel
 import com.rondi.bagiapp.databinding.SlidesOnboardingItemBinding
 
-
 class OnBoardingItemAdapter(private var onBoardingModel : List<OnBoardingModel>) :
     RecyclerView.Adapter<OnBoardingItemAdapter.OnBoardingItemViewHolder>()
 {
 
-
     inner class OnBoardingItemViewHolder(private val binding : SlidesOnboardingItemBinding) :
         RecyclerView.ViewHolder(binding.root)
     {
-
 
         fun bind(onBoardingModel : OnBoardingModel)
         {

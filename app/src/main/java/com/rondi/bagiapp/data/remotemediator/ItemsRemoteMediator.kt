@@ -27,10 +27,7 @@ class ItemsRemoteMediator(
         return InitializeAction.LAUNCH_INITIAL_REFRESH
     }
 
-    override suspend fun load(
-        loadType: LoadType,
-        state: PagingState<Int, ItemsEntity>
-    ): MediatorResult {
+    override suspend fun load(loadType: LoadType, state: PagingState<Int, ItemsEntity>): MediatorResult {
 
         val page = when (loadType) {
             LoadType.REFRESH -> {
@@ -55,13 +52,8 @@ class ItemsRemoteMediator(
 
         try {
             val responseData = service.getAllItems(token, page, state.config.pageSize)
-            val itemsList = responseData.listItems?.map {
-                if (it != null) {
-                    itemsToItemsEntity(it)
-                }
-            }
 
-            val endOfPagination = responseData.listItems?.isEmpty()
+            val endOfPagination = responseData.items.isEmpty()
 
             database.withTransaction {
                 if (loadType == LoadType.REFRESH) {
@@ -69,24 +61,20 @@ class ItemsRemoteMediator(
                     database.ItemsDao().deleteAllItems()
                 }
                 val prevKey = if (page == 1) null else page - 1
-                val nextKey = if (endOfPagination == true) null else page + 1
-                val keys = responseData.listItems?.map {
-                    RemoteKeysEntity(id = it?.id ?: "", prevKey = prevKey, nextKey = nextKey)
+                val nextKey = if (endOfPagination) null else page + 1
+                val keys = responseData.items.map {
+                    RemoteKeysEntity(id = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
 
-                if (keys != null) {
-                    database.getRemoteKeysDao().insertAll(keys)
-                }
+                database.getRemoteKeysDao().insertAll(keys)
 
-                responseData.listItems?.forEach {
-                    val itemsEntity = it?.let { it1 -> itemsToItemsEntity(it1) }
+                responseData.items.forEach {
+                    val itemsEntity = itemsToItemsEntity(it)
 
-                    if (itemsEntity != null) {
-                        database.ItemsDao().insertItems(itemsEntity)
-                    }
+                    database.ItemsDao().insertItems(itemsEntity)
                 }
             }
-            return MediatorResult.Success(endOfPagination == true)
+            return MediatorResult.Success(endOfPagination)
         } catch (ex: Exception) {
             return MediatorResult.Error(ex)
         }
@@ -94,13 +82,13 @@ class ItemsRemoteMediator(
 
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, ItemsEntity>): RemoteKeysEntity? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { data ->
-            data.id?.let { database.getRemoteKeysDao().getRemoteKeysId(it) }
+            database.getRemoteKeysDao().getRemoteKeysId(data.id)
         }
     }
 
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, ItemsEntity>): RemoteKeysEntity? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { data ->
-            data.id?.let { database.getRemoteKeysDao().getRemoteKeysId(it) }
+            database.getRemoteKeysDao().getRemoteKeysId(data.id)
         }
     }
 

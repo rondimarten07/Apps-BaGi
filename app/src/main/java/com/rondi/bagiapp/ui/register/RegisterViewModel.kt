@@ -10,6 +10,6 @@ class RegisterViewModel @Inject constructor(
     private val authRepository: AuthRepository
 ) : ViewModel() {
 
-    suspend fun userRegister(name: String, email: String, nohp: Int, username: String, password: String) =
-        authRepository.userRegister(name, email, nohp, username, password)
+    suspend fun userRegister(name: String, email: String, phone: String, username: String, password: String) =
+        authRepository.userRegister(name, email, phone, username, password)
 }

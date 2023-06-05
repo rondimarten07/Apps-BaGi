@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.rondi.bagiapp.OnBoardingModel
@@ -18,7 +19,10 @@ import com.rondi.bagiapp.databinding.ActivityOnBoardingBinding
 import com.rondi.bagiapp.ui.adapter.OnBoardingItemAdapter
 import com.rondi.bagiapp.R.string
 import com.rondi.bagiapp.R.drawable
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+@ExperimentalPagingApi
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding
     private lateinit var dots: LinearLayout

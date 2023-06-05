@@ -7,8 +7,12 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.paging.ExperimentalPagingApi
 import com.rondi.bagiapp.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+@ExperimentalPagingApi
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,13 +26,5 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.navView.setupWithNavController(navController)
 
-//        val appBarConfiguration = AppBarConfiguration.Builder(
-//            R.id.navigation_home,
-//            R.id.navigation_upload,
-//            R.id.navigation_notifications,
-//            R.id.navigation_profile
-//        ).build()
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-//        binding.navView.setupWithNavController(navController)
     }
 }

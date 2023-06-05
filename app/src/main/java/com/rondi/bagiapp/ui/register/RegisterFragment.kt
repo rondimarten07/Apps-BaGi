@@ -10,12 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
 import com.google.android.material.snackbar.Snackbar
 import com.rondi.bagiapp.R
 import com.rondi.bagiapp.databinding.FragmentRegisterBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
+@ExperimentalPagingApi
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -52,7 +56,7 @@ class RegisterFragment : Fragment() {
     private fun handleRegister() {
         val name = binding.edRegisterName.text.toString().trim()
         val email = binding.edRegisterEmail.text.toString().trim()
-        val nohp = binding.edNohp.text.toString().trim().toInt()
+        val phone = binding.edNohp.text.toString().trim()
         val username = binding.edUsername.text.toString().trim()
         val password = binding.edRegisterPassword.text.toString()
         setLoadingState(true)
@@ -61,7 +65,7 @@ class RegisterFragment : Fragment() {
             if (registerJob.isActive) registerJob.cancel()
 
             registerJob = launch {
-                viewModel.userRegister(name, email, nohp, username, password).collect { result ->
+                viewModel.userRegister(name, email, phone, username, password).collect { result ->
                     result.onSuccess {
                         Toast.makeText(
                             requireContext(),
