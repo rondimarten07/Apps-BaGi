@@ -29,7 +29,7 @@
 }
 ```
 
-**Errorr Response :**
+**Error Response :**
 
 ```json
 {
@@ -123,7 +123,7 @@
 
 **Header :**
 
-> `Authorization` : `Bearer <token>` > `Content-Type`: `application/json`
+> `Authorization` : `Bearer <token>` > `Content-Type`: `multipart/form-data`
 
 **Request Body :**
 add new data:
@@ -247,14 +247,14 @@ add new data:
 
 **Header :**
 
-> `Authorization` : `Bearer <token>` > `Content-Type`: `application/json`
+> `Authorization` : `Bearer <token>` > `Content-Type`: `multipart/form-data`
 
 **Request Body :**
 add new data:
 
 > - title as `string`
 > - description as `text`
-> - category_id as `INT` (1: Baju, 2:Tas, 3:Sepatu)
+> - category_id as `string`
 > - images as file `png`, `jpg`, `jpeg`
 
 **Response :**
