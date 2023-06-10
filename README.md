@@ -254,7 +254,7 @@ add new data:
 
 > - title as `string`
 > - description as `text`
-> - category_id as `string`
+> - category as `string`
 > - images as file `png`, `jpg`, `jpeg`
 
 **Response :**
