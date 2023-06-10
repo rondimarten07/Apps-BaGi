@@ -185,8 +185,6 @@ add new data:
             "name": "indah",
             "nohp": "0895",
             "photoItems": [
-                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
-                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
                 "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png"
             ],
             "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
@@ -225,8 +223,6 @@ add new data:
         "name": "indah",
         "nohp": "0895",
         "photoItems": [
-                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
-                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
                 "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png"
         ],
         "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
@@ -263,5 +259,48 @@ add new data:
 {
     "error": false,
     "message": "Item uploaded successfully!"
+}
+```
+
+# Search Items by title
+
+**Path :**
+
+> /search
+
+**Parameters**
+
+> - keyword as `string`, (input keyword yang ingin dicari berdasarkan title)
+
+**Method :**
+
+> `GET`
+
+**Header :**
+
+> `Authorization` : `Bearer <token>`
+
+**Response :**
+
+```json
+{
+    "error": false,
+    "items": [
+        {
+            "createAt": "2023-05-31 15:30:34",
+            "description": "Baju ini masih layak pakai, saya baru beli bulan kemarin, ukurannya XL.",
+            "id": 1,
+            "kategori": "Baju",
+            "loc": "Kenten, Banyuasin",
+            "name": "indah",
+            "nohp": "0895",
+            "photoItems": [
+                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png"
+            ],
+            "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
+            "title": "Baju"
+        }
+    ],
+    "message": "Items retrieved successfully"
 }
 ```
