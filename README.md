@@ -157,11 +157,6 @@ add new data:
 
 > /items
 
-**Parameters**
-
-> - page as `int`, optional
-> - size as `int`, optional
-
 **Method :**
 
 > `GET`
