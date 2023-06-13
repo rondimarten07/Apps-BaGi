@@ -314,7 +314,6 @@ add new data:
 **Response :**
 
 ```json
-```json
 {
     "error": false,
     "items": [
