@@ -257,7 +257,7 @@ add new data:
 
 **Path :**
 
-> /search
+> /items/search
 
 **Parameters**
 
@@ -285,9 +285,7 @@ add new data:
             "loc": "Kenten, Banyuasin",
             "name": "indah",
             "nohp": "0895",
-            "photoItems": [
-                "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png"
-            ],
+            "photoItems": "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
             "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
             "title": "Baju"
         }
