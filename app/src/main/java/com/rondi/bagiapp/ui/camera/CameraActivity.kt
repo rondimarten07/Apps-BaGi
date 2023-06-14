@@ -17,7 +17,9 @@ import androidx.paging.ExperimentalPagingApi
 import com.rondi.bagiapp.R
 import com.rondi.bagiapp.databinding.ActivityCameraBinding
 import com.rondi.bagiapp.ui.profile.UpdateProfile
+import com.rondi.bagiapp.ui.upload.UploadFragment
 import com.rondi.bagiapp.utils.createFile
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalPagingApi
 class CameraActivity : AppCompatActivity() {
@@ -70,7 +72,7 @@ class CameraActivity : AppCompatActivity() {
                         "isBackCamera",
                         cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
                     )
-                    setResult(UpdateProfile.CAMERA_X_RESULT, intent)
+                    setResult(UploadFragment.CAMERA_X_RESULT, intent)
                     finish()
                 }
             }
@@ -99,6 +101,7 @@ class CameraActivity : AppCompatActivity() {
                     imageCapture
                 )
 
+
             } catch (exc: Exception) {
                 Toast.makeText(
                     this@CameraActivity,
@@ -119,6 +122,5 @@ class CameraActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-        supportActionBar?.hide()
     }
 }

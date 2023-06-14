@@ -25,15 +25,25 @@ interface ApiService {
     ): RegisterResponse
 
     @GET("/items")
-    suspend fun getAllItems(
+    suspend fun getAllItem(
         @Header("Authorization") token: String,
-        @Query("page") page: Int? = null,
-        @Query("size") size: Int? = null,
     ): ItemsResponse
+
+    @GET("/items/search")
+    suspend fun searchItems(
+        @Header("Authorization") token: String,
+        @Query("keyword") keyword: String? = null,
+    ): SearchResponse
+
+    @GET("/items/user")
+    suspend fun getMyItem(
+        @Header("Authorization") token: String,
+        @Query("user_id") userId : String
+    ): MyItemResponse
 
     @GET("/profile")
     suspend fun getProfile(
-        @Header("Authorization") token: String,
+        @Header("Authorization") token: String
     ): ProfileResponse
 
     @Multipart
@@ -46,5 +56,15 @@ interface ApiService {
         @Part("phone") phone: RequestBody,
         @Part("loc") loc: RequestBody
     ): UpdateProfileResponse
+
+    @Multipart
+    @POST("/upload_item")
+    suspend fun uploadItems(
+        @Header("Authorization") token: String,
+        @Part file: MultipartBody.Part,
+        @Part("title") title: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("category") category: RequestBody,
+    ): UploadItemsResponse
 
 }

@@ -4,11 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.ExperimentalPagingApi
 import com.rondi.bagiapp.MainActivity
 import com.rondi.bagiapp.databinding.ActivitySplashScreenBinding
 import com.rondi.bagiapp.ui.login.LoginFragment.Companion.EXTRA_TOKEN
@@ -17,14 +14,13 @@ import kotlinx.coroutines.launch
 
 @SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
-@ExperimentalPagingApi
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
-    private val splashTimeOut: Long = 3000 // 3 detik
+    private val splashTimeOut: Long = 3000
     private val viewModel: SplashScreenViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySplashScreenBinding.inflate(layoutInflater);
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         supportActionBar?.hide()

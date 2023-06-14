@@ -38,7 +38,7 @@
     <string name="label_username">Username</string>
     <string name="label_confirmation_password">confirmation password</string>
     <string name="title_home">Home</string>
-    <string name="title_notification">Notification</string>
+    <string name="title_myitem">myitem</string>
     <string name="title_profile">Profile</string>
     <string name="title_upload">Upload</string>
 
@@ -55,9 +55,8 @@
     <string name="action_retry">Retry</string>
     <string name="message_error_items" translatable="false">Items not found</string>
     <string name="text_user_bagi">PENGGUNA BAGI</string>
-    <string name="btn_request">Request</string>
+    <string name="btn_request">Request This Item</string>
     <string name="text_edit">Edit</string>
-
 
     <string name="content_description_back_button">back button</string>
     <string name="hint_no_hp_anda">No.Hp Anda</string>
@@ -90,5 +89,26 @@
     <string name="label_description">Description</string>
     <string name="message_succes_updates">successful updates</string>
     <string name="message_failed_updates">update failed</string>
+    <string name="message_succes_upload">successful upload</string>
+    <string name="message_failed_upload">upload failed</string>
     <string name="message_pick_image">Pick an image</string>
+    <string name="message_failed_login">Email Atau Password salah</string>
+
+    <string name="message_item_torn">"Barang yang anda gunakan rusak, tidak bisa diupload pada aplikasi ini, mohon cari barang yang layak"</string>
+    <string name="warning_upload_photo">Note: Pastikan barang mu layak pakai, karena pada halaman ini bisa ngedeteksi kelayakan barang mu !</string>
+    <string name="label_title">Title</string>
+    <string name="input_your_title">input your title</string>
+    <string name="label_kategori">Kategori</string>
+    <string name="hint_input_your_description">input your description</string>
+    <string name="hint_input_your_kategori">input your kategori</string>
+    <string name="input_your_location">input your location</string>
+    <string name="result_layak">Layak</string>
+    <string name="result_tidak_layak">Tidak Layak</string>
+    <string name="detaiLphoto_items">photo items</string>
+    <string name="btn_select_image">Select Image</string>
+    <string name="btn_update">Update</string>
+    <string name="title_what_shared">What can be shared?</string>
+    <string name="label_shirt">Shirt</string>
+    <string name="label_sneakers">Sneakers</string>
+    <string name="label_bag">Bag</string>
 </resources>

@@ -15,13 +15,24 @@
         android:id="@+id/navigation_upload"
         android:name="com.rondi.bagiapp.ui.upload.UploadFragment"
         android:label="@string/title_upload"
-        tools:layout="@layout/fragment_upload" />
+        tools:layout="@layout/fragment_upload" >
+
+    <action
+        android:id="@+id/action_navigation_upload_to_navigation_home"
+        app:destination="@id/navigation_home"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:launchSingleTop="false"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:popUpToInclusive="false" />
+    </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.rondi.bagiapp.ui.notification.NotificationFragment"
-        android:label="@string/title_notification"
-        tools:layout="@layout/fragment_notification" />
+        android:id="@+id/navigation_myitem"
+        android:name="com.rondi.bagiapp.ui.myitem.MyItemFragment"
+        android:label="@string/title_myitem"
+        tools:layout="@layout/fragment_myitem" />
 
     <fragment
         android:id="@+id/navigation_profile"

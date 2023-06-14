@@ -221,7 +221,7 @@
             android:id="@+id/photo_profile"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/profil_rondi"
+            android:src="@drawable/user"
             app:layout_constraintBottom_toBottomOf="@id/bg_blue"
             app:layout_constraintEnd_toEndOf="@id/bg_blue"
             app:layout_constraintStart_toStartOf="@id/bg_blue"

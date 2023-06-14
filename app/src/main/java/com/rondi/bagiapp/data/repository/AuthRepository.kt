@@ -49,4 +49,10 @@ class AuthRepository @Inject constructor(
 
 
     fun getAuthToken(): Flow<String?> = preferences.getAuthToken()
+
+    suspend fun saveAuthUserId(userId: String){
+        preferences.saveAuthUserId(userId)
+    }
+
+    fun getUserId(): Flow<String?> = preferences.getAuthUserId()
 }

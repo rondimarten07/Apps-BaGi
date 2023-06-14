@@ -10,18 +10,16 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.paging.ExperimentalPagingApi
-import com.google.android.material.snackbar.Snackbar
 import com.rondi.bagiapp.MainActivity
 import com.rondi.bagiapp.R
 import com.rondi.bagiapp.R.string
 import com.rondi.bagiapp.databinding.FragmentLoginBinding
+import com.rondi.bagiapp.utils.showOKDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-@ExperimentalPagingApi
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -71,9 +69,12 @@ class LoginFragment : Fragment() {
                     result.onSuccess { credentials ->
 
                         credentials.loginResult?.token?.let { token ->
+                            val userId = credentials.loginResult.userId
                             loginviewModel.saveAuthToken(token)
+                            userId?.let { loginviewModel.saveAuthUserId(it) }
                             Intent(requireContext(), MainActivity::class.java).also { intent ->
                                 intent.putExtra(EXTRA_TOKEN, token)
+                                intent.putExtra(EXTRA_USER_ID, userId)
                                 startActivity(intent)
                                 requireActivity().finish()
                             }
@@ -87,11 +88,7 @@ class LoginFragment : Fragment() {
                     }
 
                     result.onFailure {
-                        Snackbar.make(
-                            binding.root,
-                            getString(string.login_error_message),
-                            Snackbar.LENGTH_SHORT
-                        ).show()
+                        showOKDialog(getString(string.title_message), getString(string.message_failed_login))
 
                         setLoadingState(false)
                     }
@@ -123,5 +120,6 @@ class LoginFragment : Fragment() {
 
     companion object {
         const val EXTRA_TOKEN = "extra_token"
+        const val EXTRA_USER_ID = "user_id"
     }
 }

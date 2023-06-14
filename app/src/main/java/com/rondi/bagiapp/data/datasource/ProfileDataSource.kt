@@ -1,6 +1,5 @@
 package com.rondi.bagiapp.data.datasource
 
-import com.rondi.bagiapp.data.local.db.ItemsDatabase
 import com.rondi.bagiapp.data.remote.ApiResponse
 import com.rondi.bagiapp.data.remote.response.ProfileResponse
 import com.rondi.bagiapp.data.remote.response.UpdateProfileResponse
@@ -9,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Part
 import javax.inject.Inject
 import javax.inject.Singleton
 

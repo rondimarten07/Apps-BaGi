@@ -10,16 +10,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.paging.ExperimentalPagingApi
 import com.google.android.material.snackbar.Snackbar
 import com.rondi.bagiapp.R
 import com.rondi.bagiapp.databinding.FragmentRegisterBinding
+import com.rondi.bagiapp.utils.showOKDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-@ExperimentalPagingApi
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -61,33 +60,39 @@ class RegisterFragment : Fragment() {
         val password = binding.edRegisterPassword.text.toString()
         setLoadingState(true)
 
-        lifecycleScope.launchWhenResumed {
-            if (registerJob.isActive) registerJob.cancel()
+        if (phone.startsWith("+62")){
+            lifecycleScope.launchWhenResumed {
+                if (registerJob.isActive) registerJob.cancel()
 
-            registerJob = launch {
-                viewModel.userRegister(name, email, phone, username, password).collect { result ->
-                    result.onSuccess {
-                        Toast.makeText(
-                            requireContext(),
-                            getString(R.string.registration_success_message),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                registerJob = launch {
+                    viewModel.userRegister(name, email, phone, username, password).collect { result ->
+                        result.onSuccess {
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.registration_success_message),
+                                Toast.LENGTH_SHORT
+                            ).show()
 
-                        // Automatically navigate user back to the login page
-                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-                    }
+                            // Automatically navigate user back to the login page
+                            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                        }
 
-                    result.onFailure {
-                        Snackbar.make(
-                            binding.root,
-                            getString(R.string.registration_error_message),
-                            Snackbar.LENGTH_SHORT
-                        ).show()
-                        setLoadingState(false)
+                        result.onFailure {
+                            Snackbar.make(
+                                binding.root,
+                                getString(R.string.registration_error_message),
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                            setLoadingState(false)
+                        }
                     }
                 }
             }
+        }else{
+            showOKDialog(getString(R.string.title_message), "Nomor HP harus diawali +62" )
+            setLoadingState(false)
         }
+
     }
 
 
@@ -96,6 +101,8 @@ class RegisterFragment : Fragment() {
             edRegisterEmail.isEnabled = !isLoading
             edRegisterPassword.isEnabled = !isLoading
             edRegisterName.isEnabled = !isLoading
+            edNohp.isEnabled = !isLoading
+            edUsername.isEnabled = !isLoading
             btnRegister.isEnabled = !isLoading
 
             if (isLoading) {

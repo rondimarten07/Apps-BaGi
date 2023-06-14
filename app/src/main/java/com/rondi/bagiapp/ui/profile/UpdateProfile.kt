@@ -1,26 +1,18 @@
 package com.rondi.bagiapp.ui.profile
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.rondi.bagiapp.R.string
-import androidx.paging.ExperimentalPagingApi
 import com.bumptech.glide.Glide
 import com.rondi.bagiapp.data.remote.ApiResponse
 import com.rondi.bagiapp.data.remote.response.Profile
 import com.rondi.bagiapp.databinding.ActivityUpdateProfileBinding
-import com.rondi.bagiapp.ui.camera.CameraActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import com.rondi.bagiapp.utils.*
@@ -28,49 +20,26 @@ import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 @AndroidEntryPoint
-@ExperimentalPagingApi
 @Suppress("DEPRECATION")
 class UpdateProfile : AppCompatActivity() {
-    private var _binding: ActivityUpdateProfileBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: ActivityUpdateProfileBinding
     private val viewModel: ProfileViewModel by viewModels()
     private var token: String = ""
     private var getFile: File? = null
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (!allPermissionsGranted()) {
-                Toast.makeText(
-                    this,
-                    getString(string.message_not_permitted),
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            }
-        }
-    }
-
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityUpdateProfileBinding.inflate(layoutInflater)
+        binding = ActivityUpdateProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val profileResponse = intent.getParcelableExtra<Profile>("profileResponse")
+
 
 
         Glide.with(this).load(profileResponse?.avatar).into(binding.editPhotoProfile)
@@ -78,13 +47,12 @@ class UpdateProfile : AppCompatActivity() {
         binding.editUsername.setText(profileResponse?.username)
         binding.editPhone.setText(profileResponse?.phone)
         binding.editAlamat.setText(profileResponse?.loc)
-//        binding.editEmail.setText(profileResponse?.email)
 
         binding.backButton.setOnClickListener {
             onBackPressed()
         }
 
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenCreated{
             launch {
                 viewModel.getAuthToken().collect { authToken ->
                     if (!authToken.isNullOrEmpty()) token = authToken
@@ -93,7 +61,6 @@ class UpdateProfile : AppCompatActivity() {
             }
         }
 
-        binding.btnOpenCamera.setOnClickListener { startCameraX() }
         binding.btnOpenGallery.setOnClickListener { startGallery() }
     }
 
@@ -103,33 +70,6 @@ class UpdateProfile : AppCompatActivity() {
         intent.type = "image/*"
         val chooser = Intent.createChooser(intent, "Choose a Picture")
         launcherIntentGallery.launch(chooser)
-    }
-
-
-    private fun startCameraX() {
-        val intent = Intent(this, CameraActivity::class.java)
-        launcherIntentCameraX.launch(intent)
-    }
-
-    private val launcherIntentCameraX = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == CAMERA_X_RESULT) {
-            val myFile = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it.data?.getSerializableExtra("picture", File::class.java)
-            } else {
-                @Suppress("DEPRECATION")
-                it.data?.getSerializableExtra("picture")
-            } as? File
-
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-
-            myFile?.let { file ->
-                rotateFile(file, isBackCamera)
-                getFile = file
-                binding.editPhotoProfile.setImageBitmap(BitmapFactory.decodeFile(file.path))
-            }
-        }
     }
 
     private val launcherIntentGallery = registerForActivityResult(
@@ -155,6 +95,7 @@ class UpdateProfile : AppCompatActivity() {
             val phone = binding.editPhone.text
             val loc = binding.editAlamat.text
 
+
             val nameMediaTyped =
                 name.toString().toRequestBody("text/plain".toMediaType())
             val usernameMediaTyped =
@@ -165,7 +106,7 @@ class UpdateProfile : AppCompatActivity() {
                 loc.toString().toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart = MultipartBody.Part.createFormData(
-                "photo",
+                "avatar",
                 file.name,
                 requestImageFile
             )
@@ -212,10 +153,6 @@ class UpdateProfile : AppCompatActivity() {
         }
     }
 
-    companion object {
-        const val CAMERA_X_RESULT = 200
 
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-        private const val REQUEST_CODE_PERMISSIONS = 10
-    }
+
 }

@@ -22,11 +22,14 @@ data class ItemsItem(
 	@field:SerializedName("loc")
 	val loc: String,
 
+	@field:SerializedName("user_id")
+	val userId: Int,
+
 	@field:SerializedName("photoUrl")
 	val photoUrl: String,
 
 	@field:SerializedName("photoItems")
-	val photoItems: List<String>,
+	val photoItems: String,
 
 	@field:SerializedName("name")
 	val name: String,

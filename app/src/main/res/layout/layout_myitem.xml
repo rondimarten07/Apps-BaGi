@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey_bg"
+    android:elevation="@dimen/dimen_16dp"
+    app:cardCornerRadius="@dimen/dimen_10dp"
+    android:layout_margin="@dimen/dimen_8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_8dp">
+
+        <ImageView
+            android:id="@+id/iv_myitem"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:background="@color/grey_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_myitem"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title"
+            android:textSize="@dimen/dimen_24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:layout_constraintStart_toEndOf="@id/iv_myitem"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:maxLines="4"
+            tools:text="@string/items_description"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/iv_myitem"
+            android:background="@drawable/design_result"
+            android:text="Belum Diadopsi"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            android:padding="8dp"
+            android:textColor="#FF9800"
+            app:layout_constraintBottom_toBottomOf="@id/garis"
+            app:layout_constraintTop_toBottomOf="@id/description"/>
+
+        <View
+            android:id="@+id/garis"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_myitem"
+            android:background="@color/grey"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_item_photo"
+            android:layout_width="@dimen/dimen_50dp"
+            android:layout_height="50dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_myitem"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/dimen_16dp"
+            tools:src="@color/grey" />
+
+        <TextView
+            android:id="@+id/tv_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/iv_item_photo"
+            app:layout_constraintTop_toBottomOf="@id/iv_myitem"
+            app:layout_constraintTop_toTopOf="@id/iv_item_photo"
+            tools:text="name" />
+
+        <TextView
+            android:id="@+id/tv_item_nohp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_photo"
+            app:layout_constraintStart_toEndOf="@id/iv_item_photo"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_name"
+            tools:text="085314405069" />
+
+        <TextView
+            android:id="@+id/tv_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_item_photo"
+            tools:text="29 May 2023" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

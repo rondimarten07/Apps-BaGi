@@ -26,6 +26,7 @@ fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }
 
+
 fun Context.showOKDialog(title: String, message: String) {
     AlertDialog.Builder(this).apply {
         setTitle(title)
@@ -36,6 +37,15 @@ fun Context.showOKDialog(title: String, message: String) {
     }.create().show()
 }
 
+fun Fragment.showOKDialog(title: String, message: String) {
+    AlertDialog.Builder(requireContext()).apply {
+        setTitle(title)
+        setMessage(message)
+        setPositiveButton("OK"){ p0, _ ->
+            p0.dismiss()
+        }
+    }.create().show()
+}
 
 fun Fragment.showConfirmationDialog(title: String, message: String, onYesClicked: () -> Unit) {
     AlertDialog.Builder(requireContext()).apply {

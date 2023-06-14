@@ -12,31 +12,47 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
 
-    <style name="StoryTextContent">
+    <style name="AnimationDialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
+    <style name="TextContent">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="StoryTextContent.Large" parent="StoryTextContent">
+    <style name="TextContent.Large" parent="TextContent">
         <item name="android:textSize">@dimen/dimen_24sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="StoryTextContent.Medium" parent="StoryTextContent">
+    <style name="TextContent.Medium" parent="TextContent">
         <item name="android:textSize">@dimen/dimen_16sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="StoryTextContent.Small" parent="StoryTextContent">
+    <style name="StoryTextContent.Small" parent="TextContent">
         <item name="android:textSize">@dimen/dimen_14sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="StoryTextContent.Title" parent="StoryTextContent">
+    <style name="TextContent.Title" parent="TextContent">
         <item name="android:textColor">@color/black</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CircularDeterminateProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/custom_progressbar_circle</item>
     </style>
 </resources>

@@ -20,4 +20,10 @@ class LoginViewModel @Inject constructor(
             authRepository.saveAuthToken(token)
         }
     }
+
+    fun saveAuthUserId(userId: String){
+        viewModelScope.launch {
+            authRepository.saveAuthUserId(userId)
+        }
+    }
 }

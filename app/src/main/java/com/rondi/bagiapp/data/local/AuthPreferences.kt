@@ -22,7 +22,20 @@ class AuthPreferences @Inject constructor(private val dataStore: DataStore<Prefe
         }
     }
 
+    fun getAuthUserId(): Flow<String?> {
+        return dataStore.data.map { preferences ->
+            preferences[USER_ID]
+        }
+    }
+
+    suspend fun saveAuthUserId(userId: String) {
+        dataStore.edit { preferences ->
+            preferences[USER_ID] = userId
+        }
+    }
+
     companion object {
         private val TOKEN_KEY = stringPreferencesKey("token_data")
+        private val USER_ID = stringPreferencesKey("user_id")
     }
 }

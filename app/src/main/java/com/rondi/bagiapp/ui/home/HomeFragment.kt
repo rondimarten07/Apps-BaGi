@@ -1,38 +1,29 @@
 package com.rondi.bagiapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.LoadState
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rondi.bagiapp.R
-import com.rondi.bagiapp.data.local.entity.ItemsEntity
-import com.rondi.bagiapp.data.remote.response.LoginResponse
+import com.rondi.bagiapp.data.remote.ApiResponse
 import com.rondi.bagiapp.databinding.FragmentHomeBinding
-import com.rondi.bagiapp.ui.adapter.ItemsListAdapter
-import com.rondi.bagiapp.ui.adapter.LoadingStateAdapter
-import com.rondi.bagiapp.utils.isTrue
+import com.rondi.bagiapp.ui.SearchItemActivity
+import com.rondi.bagiapp.ui.adapter.ItemListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.launch
 import com.rondi.bagiapp.utils.showToast
 
 @Suppress("DEPRECATION")
-@ExperimentalPagingApi
 @AndroidEntryPoint
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var listAdapter: ItemsListAdapter
-
 
     private var token: String = ""
     private val viewModel: HomeViewModel by viewModels()
@@ -50,97 +41,67 @@ class HomeFragment : Fragment() {
 
         binding.rvItems.layoutManager = LinearLayoutManager(requireContext())
 
-        getDataItems()
+        getAllItems("Bearer $token")
 
-        getAllItems("Bearer ${token}")
+        binding.search.setOnClickListener {
+            val intentToSearch = Intent(requireActivity(), SearchItemActivity::class.java)
+            startActivity(intentToSearch)
+        }
+
 
     }
 
-        private fun getDataItems() {
-            listAdapter = ItemsListAdapter()
-
-            binding.rvItems.layoutManager?.onRestoreInstanceState(binding.rvItems.layoutManager?.onSaveInstanceState())
-            binding.rvItems.adapter = listAdapter
-
-            lifecycleScope.launch {
-                listAdapter.loadStateFlow.distinctUntilChanged { old, new ->
-                    old.mediator?.prepend?.endOfPaginationReached.isTrue() == new.mediator?.prepend?.endOfPaginationReached.isTrue()
+    private fun getAllItems(token: String) {
+        viewModel.getAllItem(token).observe(requireActivity()) { response ->
+            when (response) {
+                is ApiResponse.Loading -> isLoading(true)
+                is ApiResponse.Success -> {
+                    isLoading(false)
+                    isError(false)
+                    val adapter = ItemListAdapter(response.data.items)
+                    binding.rvItems.adapter = adapter
                 }
-                    .filter { it.refresh is LoadState.NotLoading && it.prepend.endOfPaginationReached && !it.append.endOfPaginationReached }
-                    .collect {
-                        binding.rvItems.smoothScrollToPosition(0)
-                    }
-            }
+                is ApiResponse.Error -> {
+                    isLoading(false)
+                    showToast(getString(R.string.message_error_items) + response.error)
+                    isError(true)
 
-            listAdapter.withLoadStateFooter(
-                footer = LoadingStateAdapter {
-                    listAdapter.retry()
                 }
-            )
-
-            listAdapter.addLoadStateListener { loadState ->
-                when (loadState.refresh) {
-                    is LoadState.Loading -> {
-                        isError(false)
-                        isLoading(true)
-                    }
-                    is LoadState.NotLoading -> {
-                        isError(false)
-                        isLoading(false)
-                    }
-                    is LoadState.Error -> {
-                        isError(true)
-                        isLoading(false)
-                    }
-                    else -> {
-                        showToast(getString(R.string.message_unknown_state))
-                    }
+                else -> {
+                    showToast(getString(R.string.message_unknown_state))
+                    isError(true)
                 }
             }
         }
+    }
 
-        private fun getAllItems(token: String) {
-            viewModel.getAllItems(token).observe(requireActivity()) { items ->
-                initRecyclerViewUpdate(items)
+    private fun isLoading(loading: Boolean) {
+        if (loading) {
+            binding.apply {
+                binding.rvItems.visibility = View.GONE
+                binding.progressBar.visibility = View.VISIBLE
             }
-        }
-
-        private fun isLoading(loading: Boolean) {
-            if (loading) {
-                binding.apply {
-                    binding.rvItems.visibility = View.GONE
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-            } else {
-                binding.apply {
-                    binding.rvItems.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
-                }
-            }
-        }
-
-        private fun initRecyclerViewUpdate(storiesData: PagingData<ItemsEntity>) {
-            val recyclerViewState = binding.rvItems.layoutManager?.onSaveInstanceState()
-
-            listAdapter.submitData(lifecycle, storiesData)
-            binding.rvItems.layoutManager?.onRestoreInstanceState(recyclerViewState)
-
-        }
-
-
-        private fun isError(error: Boolean) {
-            if (error) {
-                binding.ivNotFoundError.alpha = 1f
-                binding.tvNotFoundError.alpha = 1f
-            } else {
+        } else {
+            binding.apply {
                 binding.rvItems.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
             }
         }
-
-        companion object {
-            const val EXTRA_TOKEN = "extra_token"
-        }
-
-
-
     }
+
+
+    private fun isError(error: Boolean) {
+        if (error) {
+            binding.ivNotFoundError.alpha = 1f
+            binding.tvNotFoundError.alpha = 1f
+            binding.rvItems.visibility = View.GONE
+        } else {
+            binding.rvItems.visibility = View.VISIBLE
+        }
+    }
+
+    companion object {
+        const val EXTRA_TOKEN = "extra_token"
+    }
+
+}

@@ -1,47 +1,86 @@
 package com.rondi.bagiapp.ui.detail
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
-import androidx.viewpager2.widget.ViewPager2
-import com.rondi.bagiapp.R
-import com.rondi.bagiapp.data.local.entity.ItemsEntity
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.rondi.bagiapp.data.remote.response.ItemsItem
+import com.rondi.bagiapp.data.remote.response.MyItem
+import com.rondi.bagiapp.data.remote.response.SearchItem
 import com.rondi.bagiapp.databinding.ActivityDetailItemsBinding
-import com.rondi.bagiapp.ui.adapter.PhotoItemsAdapter
 import com.rondi.bagiapp.utils.setImageFromUrl
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
+@AndroidEntryPoint
 class DetailItemsActivity : AppCompatActivity() {
     private var _binding: ActivityDetailItemsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var photoItemsAdapter: PhotoItemsAdapter
-    private lateinit var dots: LinearLayout
+    private var number = ""
+    private val viewModel: DetailViewModel by viewModels()
+    private var token: String = ""
+    private var userId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailItemsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val items = intent.getParcelableExtra<ItemsEntity>("EXTRA_DETAIL")
-        val photoItemsList: List<String>? = items?.photoItems
+        val item = intent.getParcelableExtra("EXTRA_DETAIL") as? Any
 
-        photoItemsAdapter = PhotoItemsAdapter(photoItemsList ?: emptyList())
-        binding.vpItems.adapter = photoItemsAdapter
-        binding.vpItems.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                setCurrentDotsOnBoarding(position)
+
+        if (item is ItemsItem?) {
+            val items = item
+
+            number = items?.nohp.toString()
+
+            binding.apply {
+                if (items != null) {
+                    detailProfile.setImageFromUrl(items.photoUrl)
+                    detailPhotoItems.setImageFromUrl(items.photoItems)
+                    detailName.text = items.name
+                    detailNohp.text = items.nohp
+                    detailTitle.text = items.title
+                    detailDate.text = items.createAt
+                    detailLoc.text = items.loc
+                    detailKategori.text = items.kategori
+                    detailDesc.text = items.description
+                }
             }
+        }
 
-        })
 
+        if (item is MyItem?) {
+            val items = item
 
-        binding.apply {
-            if (items != null) {
+            number = items?.nohp.toString()
+
+            binding.apply {
+                if (items != null) {
+                    items.photoUrl?.let { detailProfile.setImageFromUrl(it) }
+                    items.photoItems?.let { detailPhotoItems.setImageFromUrl(it) }
+                    detailName.text = items.name
+                    detailNohp.text = items.nohp
+                    detailTitle.text = items.title
+                    detailDate.text = items.createAt
+                    detailLoc.text = items.loc
+                    detailKategori.text = items.kategori
+                    detailDesc.text = items.description
+                }
+            }
+        }
+
+        if (item is SearchItem) {
+            val items = item
+
+            number = items.nohp
+
+            binding.apply {
                 detailProfile.setImageFromUrl(items.photoUrl)
+                detailPhotoItems.setImageFromUrl(items.photoItems)
                 detailName.text = items.name
                 detailNohp.text = items.nohp
                 detailTitle.text = items.title
@@ -49,56 +88,58 @@ class DetailItemsActivity : AppCompatActivity() {
                 detailLoc.text = items.loc
                 detailKategori.text = items.kategori
                 detailDesc.text = items.description
+
             }
         }
 
-        setDotsOnBoarding()
-        setCurrentDotsOnBoarding(0)
 
-        binding.btnBack.setOnClickListener{
+
+
+        binding.btnRequest.setOnClickListener {
+
+            openWhatsAppChat(number)
+        }
+
+        binding.btnBack.setOnClickListener {
             onBackPressed()
         }
+
+//
+//        lifecycleScope.launchWhenResumed {
+//            launch {
+//                viewModel.getAuthToken().collect { authToken ->
+//                    viewModel.getAuthUserId().collect { idUser ->
+//                        if (!authToken.isNullOrEmpty() && !idUser.isNullOrEmpty()) {
+//                            token = "Bearer $authToken"
+//                            userId = idUser
+//
+//
+//                            if(userId === userId){
+//                                binding.btnRequest.isEnabled = false
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            }
+//
+//        }
     }
 
+    fun openWhatsAppChat(number: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse("https://wa.me/$number")
 
-    private fun setDotsOnBoarding() {
-        dots = binding.indicator
-
-        val indicator = arrayOfNulls<ImageView>(photoItemsAdapter.itemCount)
-        val layoutParameter: LinearLayout.LayoutParams =
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        layoutParameter.setMargins(16, 0, 0, 0)
-
-        for (i in indicator.indices) {
-            indicator[i] = ImageView(applicationContext)
-            indicator[i]?.let {
-                it.setImageDrawable(
-                    ContextCompat.getDrawable(applicationContext, R.drawable.indicator_inactive)
-                )
-                it.layoutParams = layoutParameter
-                dots.addView(it)
-            }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        } else {
+            // Tindakan yang akan diambil jika WhatsApp tidak terpasang di perangkat
+            // Misalnya, menampilkan pesan kesalahan atau mengarahkan ke tautan unduhan WhatsApp
         }
     }
 
-    fun setCurrentDotsOnBoarding(position: Int) {
-        val childCount = dots.childCount
-        for (i in 0 until childCount) {
-            val imageView = dots.getChildAt(i) as ImageView
-            if (i == position) {
-                imageView.setImageDrawable(
-                    ContextCompat.getDrawable(applicationContext, R.drawable.indicator_active)
-                )
-            } else {
-                imageView.setImageDrawable(
-                    ContextCompat.getDrawable(applicationContext, R.drawable.indicator_inactive)
-                )
-            }
-
-        }
-    }
-
+//    private fun checkCurrentUser(authUserId: String, authToken: String): Boolean {
+//
+//        return authUserId == userId && authToken == token
+//    }
 }

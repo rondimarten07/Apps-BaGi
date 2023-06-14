@@ -12,9 +12,9 @@
         android:title="@string/title_upload" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications"
-        android:title="@string/title_notification" />
+        android:id="@+id/navigation_myitem"
+        android:icon="@drawable/ic_myitems"
+        android:title="@string/title_myitem" />
 
     <item
         android:id="@+id/navigation_profile"

@@ -1,88 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cv_item_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/dimen_16dp"
-    android:layout_marginEnd="@dimen/dimen_16dp"
     android:layout_marginTop="@dimen/dimen_8dp"
     android:layout_marginBottom="@dimen/dimen_8dp"
-    app:cardCornerRadius="@dimen/dimen_8dp"
-    app:cardElevation="@dimen/dimen_8dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:backgroundTint="@color/primary">
+    android:backgroundTint="@color/primary"
+    app:cardElevation="@dimen/dimen_8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/dimen_8dp">
+        android:layout_height="wrap_content">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_item_photo"
             android:layout_width="@dimen/dimen_50dp"
             android:layout_height="50dp"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@color/grey"/>
+            tools:src="@color/grey" />
 
         <TextView
             android:id="@+id/tv_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="name"
+            android:layout_marginStart="@dimen/dimen_16dp"
             android:textColor="@color/white"
+            android:layout_marginTop="@dimen/dimen_16dp"
             app:layout_constraintStart_toEndOf="@id/iv_item_photo"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="@dimen/dimen_16dp"/>
+            tools:text="name" />
 
         <TextView
             android:id="@+id/tv_item_nohp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="085314405069"
-            app:layout_constraintBottom_toBottomOf="@id/iv_item_photo"
+            android:layout_marginStart="@dimen/dimen_16dp"
             android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_photo"
             app:layout_constraintStart_toEndOf="@id/iv_item_photo"
             app:layout_constraintTop_toBottomOf="@id/tv_item_name"
-            android:layout_marginStart="@dimen/dimen_16dp"/>
+            tools:text="085314405069" />
 
         <TextView
             android:id="@+id/tv_item_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="29 May 2023"
+            android:layout_marginEnd="@dimen/dimen_16dp"
             android:textColor="@color/white"
-            app:layout_constraintTop_toTopOf="@id/iv_item_photo"
-           app:layout_constraintBottom_toBottomOf="@id/iv_item_photo"
+            app:layout_constraintBottom_toBottomOf="@id/iv_item_photo"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/dimen_16dp"/>
+            app:layout_constraintTop_toTopOf="@id/iv_item_photo"
+            tools:text="29 May 2023" />
 
         <ImageView
             android:id="@+id/img_items"
             android:layout_width="0dp"
-            android:layout_height="200dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_item_photo"
+            android:layout_height="400dp"
+            android:layout_marginTop="@dimen/dimen_16dp"
             android:background="@color/white"
-            android:layout_marginTop="@dimen/dimen_16dp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_item_photo" />
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:paddingBottom="@dimen/dimen_10dp"
-            android:textColor="@color/white"
             android:ellipsize="end"
+            android:textColor="@color/white"
             android:textSize="@dimen/dimen_24sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/img_items"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="@dimen/dimen_16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Title"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_items"
+            tools:text="Title" />
 
 
         <TextView
@@ -90,14 +88,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:layout_marginStart="@dimen/dimen_16dp"
+            android:layout_marginEnd="@dimen/dimen_16dp"
             android:paddingBottom="@dimen/dimen_16dp"
             android:textColor="@color/white"
-            android:maxLines="3"
-            android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="@string/items_description"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:text="@string/items_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

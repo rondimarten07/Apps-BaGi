@@ -1,23 +1,26 @@
 package com.rondi.bagiapp.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.rondi.bagiapp.data.local.entity.ItemsEntity
+import androidx.lifecycle.*
+import com.rondi.bagiapp.data.remote.ApiResponse
+import com.rondi.bagiapp.data.remote.response.ItemsResponse
 import com.rondi.bagiapp.data.repository.ItemsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalPagingApi
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val itemsRepository: ItemsRepository
 ) : ViewModel() {
 
-    fun getAllItems(token: String) : LiveData<PagingData<ItemsEntity>> =
-        itemsRepository.getAllItems(token).cachedIn(viewModelScope).asLiveData()
+    fun getAllItem(token: String) : LiveData<ApiResponse<ItemsResponse>> {
+        val result = MutableLiveData<ApiResponse<ItemsResponse>>()
+        viewModelScope.launch {
+            itemsRepository.getAllItem(token).collect {
+                result.postValue(it)
+            }
+        }
+        return result
+    }
+
 }
