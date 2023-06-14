@@ -1,18 +1,17 @@
 # REST API - APP BaGi
 
 # Cloud Computing Job Desk
-
 - Create endpoints for login, register, profile, edit profile, get all items, get item by id, upload item, search item, my items
 - Create SQL instance to store data
 - Create cloud storage to store cake images
 - Deploy APIs to Cloud Run
 
 # API Endpoint
+In making the RESTful APIs we use Python 3 with the Flask Framework and MySQL for building an API server, and for responses using JSON format.
+Explanation for each endpoint that can be used :
 
 **Base URL :**
 > https://
-In making the RESTful APIs we use Python with the Flask Framework and MySQL for building an API server, and for responses using JSON format.
-Explanation for each endpoint that can be used :
 
 # Register
 
