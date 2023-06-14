@@ -280,7 +280,7 @@ def edit_profile(current_user):
     finally:
         db.commit()
 
-# Route untuk get all items (home)
+# Route untuk get all item (home)
 @app.route('/items', methods=['GET'])
 @token_required
 def get_items(current_user):
@@ -288,16 +288,9 @@ def get_items(current_user):
         db.start_transaction()
 
         # Menampilkan semua item
-        page = int(request.args.get('page', 1))
-        size = int(request.args.get('size', 10))
-        page = max(1, page)
-        size = max(1, size)
-        offset = (page - 1) * size
-
         cursor = db.cursor()
-        cursor.execute("SELECT items.id, items.title, items.deskripsi, items.images, items.category, items.postDate, users.nama, users.loc, users.phone, users.avatar FROM items \
-                        INNER JOIN users ON items.user_id = users.id \
-                        LIMIT %s OFFSET %s", (size, offset))
+        cursor.execute("SELECT items.id, items.title, items.deskripsi, items.images, items.category, items.postDate, users.nama, users.loc, users.phone, users.avatar, items.user_id FROM items \
+                        INNER JOIN users ON items.user_id = users.id")
         items = cursor.fetchall()
 
         item_list = []
@@ -312,7 +305,8 @@ def get_items(current_user):
                 'name': item[6],
                 'loc': item[7],
                 'nohp': item[8],
-                'photoUrl': item[9]
+                'photoUrl': item[9],
+                'user_id': item[10] 
             }
             item_list.append(item_data)
 
@@ -335,7 +329,7 @@ def get_item_by_id(current_user, item_id):
         db.start_transaction()
 
         cursor = db.cursor()
-        cursor.execute("SELECT items.id, items.title, items.deskripsi, items.images, items.category, items.postDate, users.nama, users.loc, users.phone, users.avatar FROM items \
+        cursor.execute("SELECT items.id, items.title, items.deskripsi, items.images, items.category, items.postDate, users.nama, users.loc, users.phone, users.avatar, items.user_id FROM items \
                        INNER JOIN users ON items.user_id = users.id \
                         WHERE items.id = %s", (item_id,))
         item = cursor.fetchone()
@@ -351,9 +345,10 @@ def get_item_by_id(current_user, item_id):
                 'name': item[6],
                 'loc': item[7],
                 'nohp': item[8],
-                'photoUrl': item[9] 
+                'photoUrl': item[9],
+                'user_id': item[10] 
             }
-            return jsonify({'error': False, 'message': 'Items retrieved successfully', 'item': item_data}), 200
+            return jsonify({'error': False, 'message': 'Item retrieved successfully', 'item': item_data}), 200
         else:
             return jsonify({'error': True, 'message': 'Item not found'}), 404
 
@@ -362,6 +357,7 @@ def get_item_by_id(current_user, item_id):
         return jsonify({'error': True, 'message': str(e)}), 500
     finally:
         db.commit()
+
 
 @app.route('/upload_item', methods=['POST'])
 @token_required
@@ -426,7 +422,7 @@ def search_items(current_user):
             return jsonify({'error': True, 'message': 'Keyword parameter is required'}), 400
 
         cursor = db.cursor()
-        cursor.execute("SELECT items.id, items.title, items.deskripsi, items.images, items.category, items.postDate, users.nama, users.loc, users.phone, users.avatar FROM items \
+        cursor.execute("SELECT items.id, items.title, items.deskripsi, items.images, items.category, items.postDate, users.nama, users.loc, users.phone, users.avatar, items.user_id FROM items \
                         INNER JOIN users ON items.user_id = users.id \
                         WHERE items.title LIKE %s", ('%' + keyword + '%',))
         items = cursor.fetchall()
@@ -443,7 +439,8 @@ def search_items(current_user):
                 'name': item[6],
                 'loc': item[7],
                 'nohp': item[8],
-                'photoUrl': item[9]
+                'photoUrl': item[9],
+                'user_id': item[10] 
             }
             item_list.append(item_data)
 
@@ -458,47 +455,48 @@ def search_items(current_user):
         db.commit()
 
 
-# Route untuk mendapatkan item berdasarkan current user_id
+# Route untuk get all items by user ID (My Items)
 @app.route('/items/user', methods=['GET'])
-@token_required
-def get_items_by_user_id(current_user):
+def get_items_by_user_id():
     try:
+        # Ambil nilai user_id dari parameter URL
+        user_id = int(request.args.get('user_id'))
+
         db.start_transaction()
 
-        user_id = int(current_user['id'])
-
         cursor = db.cursor()
-        cursor.execute("SELECT items.id, items.title, items.deskripsi, items.images, items.category, items.postDate, users.nama, users.loc, users.phone, users.avatar FROM items \
-                       INNER JOIN users ON items.user_id = users.id \
-                       WHERE users.id = %s", (user_id,))
+        cursor.execute("SELECT items.id, items.title, items.deskripsi, items.images, items.category, items.postDate, users.nama, users.loc, users.phone, users.avatar, items.user_id FROM items \
+                        INNER JOIN users ON items.user_id = users.id \
+                        WHERE users.id = %s", (user_id,))
         items = cursor.fetchall()
 
-        if items:
-            all_items = []
-            for item in items:
-                item_data = {
-                    'id': item[0],
-                    'title': item[1],
-                    'description': item[2],
-                    'photoItems': item[3].split(',') if item[3] else [],
-                    'kategori': item[4],
-                    'createAt': item[5].strftime('%Y-%m-%d %H:%M:%S'),
-                    'name': item[6],
-                    'loc': item[7],
-                    'nohp': item[8],
-                    'photoUrl': item[9] 
-                }
-                all_items.append(item_data)
-            
-            return jsonify({'error': False, 'message': 'Items retrieved successfully', 'items': all_items}), 200
-        else:
-            return jsonify({'error': True, 'message': 'Items not found'}), 404
+        item_list = []
+        for item in items:
+            item_data = {
+                'id': item[0],
+                'title': item[1],
+                'description': item[2],
+                'photoItems': item[3],
+                'kategori': item[4],
+                'createAt': item[5].strftime('%Y-%m-%d %H:%M:%S'),
+                'name': item[6],
+                'loc': item[7],
+                'nohp': item[8],
+                'photoUrl': item[9],
+                'user_id': item[10]  
+            }
+            item_list.append(item_data)
+
+        message = 'Items retrieved successfully'
+
+        return jsonify({'error': False, 'message': message, 'items': item_list}), 200
 
     except Exception as e:
         db.rollback()
         return jsonify({'error': True, 'message': str(e)}), 500
     finally:
         db.commit()
+
 
 if __name__ == '__main__':
     serve(app, host="0.0.0.0", port=int(os.environ.get('PORT', 8080)))
