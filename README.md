@@ -181,7 +181,8 @@ add new data:
             "nohp": "0895",
             "photoItems": "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
             "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
-            "title": "Baju"
+            "title": "Baju",
+            "user_id": 1
         }
     ],
     "message": "Items retrieved successfully"
@@ -287,7 +288,8 @@ add new data:
             "nohp": "0895",
             "photoItems": "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
             "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
-            "title": "Baju"
+            "title": "Baju",
+            "user_id": 1
         }
     ],
     "message": "Items retrieved successfully"
@@ -327,7 +329,8 @@ add new data:
             "nohp": "0895",
             "photoItems": "https://storage.googleapis.com/zurv-bucket/00053543-removebg-preview.png",
             "photoUrl": "https://storage.googleapis.com/zurv-bucket/gambar1.jpg",
-            "title": "Baju"
+            "title": "Baju",
+            "user_id": 1
         }
     ],
     "message": "Items retrieved successfully"
