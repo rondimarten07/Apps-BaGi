@@ -358,7 +358,7 @@ def get_item_by_id(current_user, item_id):
     finally:
         db.commit()
 
-
+# Route untuk upload item
 @app.route('/upload_item', methods=['POST'])
 @token_required
 def upload_item(current_user):
