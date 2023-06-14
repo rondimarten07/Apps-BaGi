@@ -3,7 +3,7 @@
 # Cloud Computing Job Desk
 - Create endpoints for login, register, profile, edit profile, get all items, get item by id, upload item, search item, my items
 - Create SQL instance to store data
-- Create cloud storage to store cake images
+- Create cloud storage to store images
 - Deploy APIs to Cloud Run
 
 # API Endpoint
