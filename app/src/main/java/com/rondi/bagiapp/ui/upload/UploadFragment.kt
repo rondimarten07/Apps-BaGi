@@ -289,7 +289,7 @@ class UploadFragment : Fragment() {
 
         if (getFile == null) {
             showOKDialog(getString(R.string.title_message), getString(R.string.message_pick_image))
-        } else if (kategori == "defected") {
+        } else if (kategori == "Defected") {
             dialogError.show()
 
         }else if (description.length > 255 ){
