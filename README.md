@@ -1,8 +1,8 @@
 # BaGi Apps
 
 <p align="center">
-  <a href="https://github.com/rondimarten07/Apps-BaGi/blob/main/logo.png">
-    <img src="logo.png">
+  <a href="https://github.com/rondimarten07/Apps-BaGi/blob/main/20230524_164200_0000.png">
+    <img src="20230524_164200_0000.png">
   </a>
 </p>
 
