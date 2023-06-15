@@ -219,6 +219,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:elevation="@dimen/dimen_4dp"
+            android:progressTint="@color/primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

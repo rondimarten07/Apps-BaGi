@@ -11,7 +11,7 @@
         android:id="@+id/actionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_bg"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +22,7 @@
             android:layout_height="?attr/actionBarSize"
             app:title="My Items"
             app:titleCentered="true"
-            app:titleTextColor="@color/white">
+            app:titleTextColor="@color/black">
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -37,6 +37,18 @@
         tools:listitem="@layout/layout_myitem"
         android:layout_marginTop="@dimen/dimen_8dp"/>
 
+    <ImageView
+        android:id="@+id/iluastarasi_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ilustrasi_no_data_2"
+        android:alpha="0"
+        android:contentDescription="@string/content_description_image"/>
+
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="match_parent"
@@ -46,5 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:progressTint="@color/primary"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

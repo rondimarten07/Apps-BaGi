@@ -55,7 +55,7 @@ class UploadFragment : Fragment() {
     private val viewModel: UploadViewModel by viewModels()
     private var token: String = ""
     private var getFile: File? = null
-    private val imageSize = 416
+    private val imageSize = 224
     private lateinit var dialog: Dialog
     private lateinit var dialogError: Dialog
 
@@ -142,6 +142,8 @@ class UploadFragment : Fragment() {
                 rotateFile(file, isBackCamera)
                 getFile = file
 
+                binding.imgUpload.setImageBitmap(BitmapFactory.decodeFile(file.path))
+
                 val imageBitmap = BitmapFactory.decodeFile(file.path)
                 val dimension = min(imageBitmap.width, imageBitmap.height)
                 val thumbnail = ThumbnailUtils.extractThumbnail(
@@ -149,8 +151,6 @@ class UploadFragment : Fragment() {
                     dimension,
                     dimension
                 )
-
-                binding.imgUpload.setImageBitmap(thumbnail)
 
                 val scaledImage = Bitmap.createScaledBitmap(thumbnail, imageSize, imageSize, false)
                 classifyImage(scaledImage)
@@ -164,6 +164,7 @@ class UploadFragment : Fragment() {
 
             val inputFeature0 =
                 TensorBuffer.createFixedSize(intArrayOf(1, imageSize, imageSize, 3), DataType.FLOAT32)
+
             val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
             byteBuffer.order(ByteOrder.nativeOrder())
 
@@ -197,23 +198,26 @@ class UploadFragment : Fragment() {
                     Log.d("max pos", "max pos[$i]")
                 }
             }
-            val classes =
-                arrayOf("defected", "hat", "jacket", "shirt", "pants", "shorts", "skirt", "dress", "shoe", "sepatu")
+            val classes = arrayOf("Defected", "Shirt", "Bag", "Shoes")
+
             binding.tvResult.text = classes[maxPos]
 
             binding.edKategori.setText(classes[maxPos])
+
+            val result = binding.edKategori.text.toString()
+            if (result == "Defected") {
+                showKelayakan(false)
+            } else {
+                showKelayakan(true)
+            }
+            Log.d("result", "{$result}")
+
 
             val resultMax = maxConfidence * 100
             val resultMaxInt = resultMax.toInt()
             binding.resultBar.progress = resultMaxInt
             binding.tvResultBar.text = "$resultMaxInt%"
 
-            var s = ""
-            for (i in classes.indices) {
-                s += String.format("%s: %.1f%%\n", classes[i], confidences[i] * 100)
-            }
-
-            binding.tvConfidence.text = s
 
             model.close()
         } catch (e: IOException) {
@@ -287,6 +291,9 @@ class UploadFragment : Fragment() {
             showOKDialog(getString(R.string.title_message), getString(R.string.message_pick_image))
         } else if (kategori == "defected") {
             dialogError.show()
+
+        }else if (description.length > 255 ){
+            showOKDialog(getString(R.string.title_message), getString(R.string.description_error))
         } else {
             val file = reduceFileImage(getFile as File)
 
@@ -352,7 +359,19 @@ class UploadFragment : Fragment() {
         }
     }
 
-    private fun clearText(){
+    private fun showKelayakan(kelayakan: Boolean) {
+        binding.apply {
+            if (kelayakan) {
+                binding.resultLayak.alpha = 1f
+                binding.resultTidakLayak.alpha = 0f
+            } else {
+                binding.resultTidakLayak.alpha = 1f
+                binding.resultLayak.alpha = 0f
+            }
+        }
+    }
+
+    private fun clearText() {
         binding.apply {
             edTitle.setText("")
             edDescription.setText("")
@@ -360,11 +379,11 @@ class UploadFragment : Fragment() {
         }
     }
 
-        companion object {
-            const val CAMERA_X_RESULT = 200
+    companion object {
+        const val CAMERA_X_RESULT = 200
 
-            private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-            private const val REQUEST_CODE_PERMISSIONS = 10
-        }
+        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private const val REQUEST_CODE_PERMISSIONS = 10
     }
+}
 

@@ -64,7 +64,13 @@ class MyItemFragment : Fragment() {
                 is ApiResponse.Success -> {
                     isLoading(false)
                     val adapter = response.data.item?.let { MyItemsAdapter(it) }
-                    binding.rvMyItems.adapter = adapter
+
+                    if (adapter?.itemCount == 0){
+                        binding.iluastarasiNoData.alpha = 1f
+                    }else{
+                        binding.rvMyItems.adapter = adapter
+                    }
+
                 }
                 is ApiResponse.Error -> {
                     isLoading(false)

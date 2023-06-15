@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.rondi.bagiapp.R
 import com.rondi.bagiapp.data.remote.response.ItemsItem
 import com.rondi.bagiapp.data.remote.response.MyItem
 import com.rondi.bagiapp.data.remote.response.SearchItem
 import com.rondi.bagiapp.databinding.ActivityDetailItemsBinding
 import com.rondi.bagiapp.utils.setImageFromUrl
+import com.rondi.bagiapp.utils.showOKDialog
+import com.rondi.bagiapp.utils.timeStamptoString
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -44,10 +47,13 @@ class DetailItemsActivity : AppCompatActivity() {
                     detailName.text = items.name
                     detailNohp.text = items.nohp
                     detailTitle.text = items.title
-                    detailDate.text = items.createAt
+                    detailDate.text = items.createAt.timeStamptoString()
                     detailLoc.text = items.loc
                     detailKategori.text = items.kategori
                     detailDesc.text = items.description
+
+                    val userId = items.userId.toString()
+                    checkCurrentUser(userId)
                 }
             }
         }
@@ -65,10 +71,13 @@ class DetailItemsActivity : AppCompatActivity() {
                     detailName.text = items.name
                     detailNohp.text = items.nohp
                     detailTitle.text = items.title
-                    detailDate.text = items.createAt
+                    detailDate.text = items.createAt?.timeStamptoString()
                     detailLoc.text = items.loc
                     detailKategori.text = items.kategori
                     detailDesc.text = items.description
+
+                    val userId = items.userId.toString()
+                    checkCurrentUser(userId)
                 }
             }
         }
@@ -84,11 +93,13 @@ class DetailItemsActivity : AppCompatActivity() {
                 detailName.text = items.name
                 detailNohp.text = items.nohp
                 detailTitle.text = items.title
-                detailDate.text = items.createAt
+                detailDate.text = items.createAt.timeStamptoString()
                 detailLoc.text = items.loc
                 detailKategori.text = items.kategori
                 detailDesc.text = items.description
 
+                val userId = items.userId.toString()
+                checkCurrentUser(userId)
             }
         }
 
@@ -104,26 +115,8 @@ class DetailItemsActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-//
-//        lifecycleScope.launchWhenResumed {
-//            launch {
-//                viewModel.getAuthToken().collect { authToken ->
-//                    viewModel.getAuthUserId().collect { idUser ->
-//                        if (!authToken.isNullOrEmpty() && !idUser.isNullOrEmpty()) {
-//                            token = "Bearer $authToken"
-//                            userId = idUser
-//
-//
-//                            if(userId === userId){
-//                                binding.btnRequest.isEnabled = false
-//                            }
-//                        }
-//                    }
-//
-//                }
-//            }
-//
-//        }
+
+
     }
 
     fun openWhatsAppChat(number: String) {
@@ -133,13 +126,27 @@ class DetailItemsActivity : AppCompatActivity() {
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         } else {
-            // Tindakan yang akan diambil jika WhatsApp tidak terpasang di perangkat
-            // Misalnya, menampilkan pesan kesalahan atau mengarahkan ke tautan unduhan WhatsApp
+            showOKDialog(getString(R.string.title_message), getString(R.string.message_wa_notfound))
         }
     }
 
-//    private fun checkCurrentUser(authUserId: String, authToken: String): Boolean {
-//
-//        return authUserId == userId && authToken == token
-//    }
+    private fun checkCurrentUser(user: String){
+        lifecycleScope.launchWhenResumed {
+            launch {
+                    viewModel.getAuthUserId().collect { idUser ->
+                        if (!idUser.isNullOrEmpty()) {
+                            userId = idUser
+
+                            if(userId == user){
+                                binding.btnRequest.isEnabled = false
+                                binding.btnRequest.setText(R.string.your_item)
+                            }
+                        }
+
+                }
+            }
+
+        }
+    }
+
 }

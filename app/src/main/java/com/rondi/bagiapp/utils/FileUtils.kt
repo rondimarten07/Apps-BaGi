@@ -7,6 +7,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.Environment
 import com.rondi.bagiapp.R
@@ -55,13 +56,24 @@ fun createFile(application: Application): File {
 }
 
 fun rotateFile(file: File, isBackCamera: Boolean = false) {
-    val matrix = Matrix()
+    val exif = ExifInterface(file.path)
     val bitmap = BitmapFactory.decodeFile(file.path)
-    val rotation = if (isBackCamera) 90f else -90f
+    val orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+    val rotation = when (orientation) {
+        ExifInterface.ORIENTATION_ROTATE_90 -> 90f
+        ExifInterface.ORIENTATION_ROTATE_180 -> 180f
+        ExifInterface.ORIENTATION_ROTATE_270 -> 270f
+        else -> 0f
+    }
+
+    val matrix = Matrix()
     matrix.postRotate(rotation)
+
     if (!isBackCamera) {
         matrix.postScale(-1f, 1f, bitmap.width / 2f, bitmap.height / 2f)
     }
+
+
     val result = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     result.compress(Bitmap.CompressFormat.JPEG, 100, FileOutputStream(file))
 }

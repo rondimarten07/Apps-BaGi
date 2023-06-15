@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.rondi.bagiapp.R.string
 import com.bumptech.glide.Glide
+import com.rondi.bagiapp.R.drawable
 import com.rondi.bagiapp.data.remote.ApiResponse
 import com.rondi.bagiapp.data.remote.response.Profile
 import com.rondi.bagiapp.databinding.ActivityUpdateProfileBinding
@@ -41,8 +42,13 @@ class UpdateProfile : AppCompatActivity() {
         val profileResponse = intent.getParcelableExtra<Profile>("profileResponse")
 
 
+        val checkPhoto = profileResponse?.avatar
+        if (checkPhoto != null){
+            Glide.with(this).load(profileResponse.avatar).into(binding.editPhotoProfile)
+        }else{
+            binding.editPhotoProfile.setImageResource(drawable.user)
+        }
 
-        Glide.with(this).load(profileResponse?.avatar).into(binding.editPhotoProfile)
         binding.editNama.setText(profileResponse?.nama)
         binding.editUsername.setText(profileResponse?.username)
         binding.editPhone.setText(profileResponse?.phone)

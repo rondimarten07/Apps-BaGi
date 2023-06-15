@@ -66,7 +66,13 @@ class SearchItemActivity : AppCompatActivity() {
                 is ApiResponse.Success -> {
                     isLoading(false)
                     val adapter = SearchAdapter(response.data.items)
-                    binding.rvItems.adapter = adapter
+
+                    if (adapter.itemCount == 0){
+                        binding.iluastarasiNoData.alpha = 1f
+                    }else{
+                        binding.iluastarasiNoData.alpha = 0f
+                        binding.rvItems.adapter = adapter
+                    }
                 }
                 is ApiResponse.Error -> {
                     isLoading(false)

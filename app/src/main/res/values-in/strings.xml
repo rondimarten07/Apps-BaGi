@@ -1,0 +1,117 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">BaGi</string>
+
+    <string name="error_empty_name">Masukkan nama anda</string>
+    <string name="error_empty_phone">Masukkan nomor telepon anda</string>
+    <string name="error_empty_username">Masukkan username anda </string>
+    <string name="error_empty_email">Masukkan email Anda</string>
+    <string name="error_invalid_email">Email tidak valid</string>
+    <string name="error_empty_password">Masukkan kata sandi Anda</string>
+    <string name="label_is_have_account">Sudah memiliki akun?</string>
+    <string name="error_password_more_8">Kata sandi harus lebih dari 8 karakter</string>
+
+    <string name="title_onboard_1">Aplikasi untuk berbagi barang bekas</string>
+    <string name="desc_onboard_1">Aplikasi ini berguna untuk menyalurkan barang yang sudah tidak digunakan untuk di gunakan kembali oleh orang lain</string>
+    <string name="title_onboard_2">Berbagi itu indah</string>
+    <string name="desc_onboard_2">Barang bekas yang masih layak pakai lebih baik disalurkan ke orang yang membutuhkan, untuk digunakan kembali</string>
+    <string name="title_onboard_3">Nikmatin aplikasi untuk saling berbagi</string>
+    <string name="desc_onboard_3">Silahkan daftarkan akunmu untuk bisa menggunakan aplikasi ini !</string>
+    <string name="onboard_next">Berikutnya</string>
+    <string name="onboard_started">Memulai</string>
+
+    <string name="label_login_welcome_desc">Silakan login agar Anda dapat menikmati pengalaman penuh</string>
+    <string name="action_to_register">Daftar di sini</string>
+    <string name="label_register_welcome_desc">Daftarkan diri Anda menggunakan aplikasi BaGi</string>
+    <string name="action_to_login">Login di sini</string>
+
+    <string name="action_register">Daftar</string>
+
+    <string name="label_nama">Nama Lengkap</string>
+    <string name="label_btn_login">Masuk</string>
+    <string name="label_email">Email</string>
+    <string name="label_password">Kata sandi</string>
+    <string name="label_welcome">Masuk</string>
+    <string name="label_is_havent_account">Tidak memiliki akun?</string>
+
+    <string name="label_register">Silakan buat akun Anda!</string>
+    <string name="label_no_hp">No HP</string>
+    <string name="label_username">Username</string>
+    <string name="label_confirmation_password">kata sandi konfirmasi</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_myitem">barang saya</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_upload">Unggah</string>
+
+    <string name="login_success_message">Login Berhasil</string>
+    <string name="login_error_message">Login Gagal</string>
+    <string name="registration_success_message">Daftar Berhasil</string>
+    <string name="registration_error_message">Daftar Gagal</string>
+    <string name="search">Pencarian</string>
+    <string name="items_description" translatable="false">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsu....</string>
+
+    <string name="no_data">Tidak ada data</string>
+    <string name="items_not_found_error">Item Tidak Ditemukan</string>
+    <string name="message_unknown_state">Status Tidak Diketahui</string>
+    <string name="action_retry">Coba lagi.</string>
+    <string name="message_error_items" translatable="false">Item tidak ditemukan</string>
+    <string name="text_user_bagi">PENGGUNA BAGI</string>
+    <string name="btn_request">Minta Barang Ini</string>
+    <string name="text_edit">Edit</string>
+
+    <string name="content_description_back_button">tombol kembali</string>
+    <string name="hint_no_hp_anda">No.Hp Anda</string>
+    <string name="content_description_image">Gambar</string>
+    <string name="text_approve_page">Halaman Persetujuan</string>
+    <string name="text_update">Perbarui</string>
+    <string name="hint_alamat">Alamat Anda</string>
+    <string name="text_alamat">Alamat</string>
+    <string name="text_no_hp">No Hp</string>
+    <string name="hint_email_anda">Email Anda</string>
+    <string name="text_email">Email</string>
+    <string name="hint_username_anda">Username Anda</string>
+    <string name="text_username">Username</string>
+    <string name="text_change_picture">Ubah Gambar</string>
+    <string name="text_informasi_dasar">Informasi Dasar</string>
+    <string name="action_logout">Keluar</string>
+    <string name="action_cancel">Batal</string>
+    <string name="title_message">Informasi</string>
+    <string name="message_logout_confirm">Apakah Anda yakin ingin keluar?</string>
+    <string name="button_capture">Pengambilan Tombol</string>
+    <string name="switch_camera">Beralih Kamera</string>
+    <string name="message_failed_take_picture">Gagal mengambil gambar</string>
+    <string name="message_failed_camera">Gagal memunculkan kamera</string>
+    <string name="message_not_permitted">Izin tidak diberikan</string>
+    <string name="hint_input_your_email">masukkan email Anda</string>
+    <string name="hint_input_your_password">masukkan kata sandi Anda</string>
+    <string name="hint_input_your_name">masukkan nama Anda</string>
+    <string name="hint_input_your_phone">masukkan telepon Anda</string>
+    <string name="hint_input_your_username">masukkan nama pengguna Anda</string>
+    <string name="label_description">Deskripsi</string>
+    <string name="message_succes_updates">pembaruan berhasil</string>
+    <string name="message_failed_updates">pembaruan gagal</string>
+    <string name="message_succes_upload">unggahan berhasil</string>
+    <string name="message_failed_upload">unggahan gagal</string>
+    <string name="message_pick_image">Pilih gambar</string>
+    <string name="message_failed_login">Email atau kata sandi salah</string>
+
+    <string name="message_item_torn">"Barang yang anda gunakan rusak, tidak bisa diupload pada aplikasi ini, mohon cari barang yang layak"</string>
+    <string name="warning_upload_photo">Note: Pastikan barang mu layak pakai, karena pada halaman ini bisa ngedeteksi kelayakan barang mu !</string>
+    <string name="label_title">Judul</string>
+    <string name="input_your_title">masukkan judul Anda</string>
+    <string name="label_kategori">Kategori</string>
+    <string name="hint_input_your_description">masukkan deskripsi Anda</string>
+    <string name="hint_input_your_kategori">masukkan kategori Anda</string>
+    <string name="input_your_location">masukkan lokasi Anda</string>
+    <string name="result_layak">Layak</string>
+    <string name="result_tidak_layak">Tidak Layak</string>
+    <string name="detaiLphoto_items">item foto</string>
+    <string name="btn_select_image">Pilih Gambar</string>
+    <string name="btn_update">Perbarui</string>
+    <string name="title_what_shared">Apa yang bisa dibagikan?</string>
+    <string name="label_shirt">Baju</string>
+    <string name="label_sneakers">Sepatu</string>
+    <string name="label_bag">Tas</string>
+    <string name="your_item">ini item milik mu</string>
+    <string name="description_error">Deskripsi tidak boleh lebih dari 255 karakter</string>
+    <string name="message_wa_notfound">Nomor Whatsapp tidak ditemukan</string>
+</resources>
