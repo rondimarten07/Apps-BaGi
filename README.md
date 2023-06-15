@@ -1,5 +1,11 @@
 # BaGi Apps
 
+<p align="center">
+  <a href="https://github.com/rondimarten07/Apps-BaGi/blob/main/logo.png">
+    <img src="logo.png">
+  </a>
+</p>
+
 This is a repository for BaGi Apps which is the final Product Based Capstone Project for Bangkit Academy 2023. This apps is created by team C23-PS459 with 6 students from 3 learning path such as Machine Learning, Mobile Development, and Cloud Computing.
 
 ## About BaGi
