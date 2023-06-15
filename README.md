@@ -44,8 +44,9 @@ Here is the [link](https://drive.google.com.......) of BaGi App.
 1. <b>Machine Learning</b>
    - TensorFlow Lite
    - Python
-   - Yolonas
+   - Keras
    - Roboflow
+   - Kaggle
 2. <b>Android Development</b>
    - Kotlin
    - MVVM Architecture
