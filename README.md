@@ -12,7 +12,3 @@ We create basic Object Detection model with 4 layers of convolutional neural net
 ## 2. Shirt, Shoes, Bag, and the Defected Dataset
 
 We collected dataset manually by scraping from Kaggle, Google images, and Roboflow. Also we label all of the image using roboflow for annotation. In total, we accumulated 1337 images
-
-## 3. TFLite Model
-
-For model deployment, we convert .h model into TFLite to make it smaller and compatible for mobile device. Our final TFLite model has size of 60mb & can be accessed through this [Google drive](https://drive.google.com/drive/folders/1jzKucwzypVAmtW5rCzH4nj8Bdu1IsWSZ?usp=sharing). 
