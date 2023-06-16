@@ -1,5 +1,14 @@
 # Machine Learning Branch of BaGi App
 
+## Meet the Team 
+
+<b> Team ID : C22-PS028</b>
+
+|         Member                    |  Student ID  |        Path        |               University              |                                               
+| :------------------------------:  | :----------: | :----------------: |  :----------------------------------: |
+|  Pundi Razzaq Widodo              |  M172DSX1868 |  Machine Learning  |  Universitas Gunadarma                |
+|  Christhoper Klose                |  M172DSX2141 |  Machine Learning  |  Universitas Gunadarma                |
+
 ## 1. Object Detection Model
 
 For object Detection model, we created model made from scratch
