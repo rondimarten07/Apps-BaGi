@@ -7,7 +7,7 @@ For object Detection model, we created model made from scratch
 **Model Made From Scratch**<br />
 We create basic Object Detection model with 4 layers of convolutional neural network. With dataset around 1337 total images for 4 classes, we achieved **0.8951 validation accuracy** and **0.7365 validation loss**. The dataset we use is far from sufficient to create a good model and we still struggled on handling the overfitting after several times tuning the model.<br />
 
-![image](Contents/Model1_Val_Acc.jpg)
+!train_and_val_acc.jpg
 
 **Model with transfer learning using InceptionV3**<br />
 For the second model, we tried transfer learning using InceptionV3 model. InceptionV3 is an upgraded version from InceptionV1 which was introduced as GoogLeNet in 2014. As the name suggests it was developed by a team at Google. InceptionV3 architecture consist of Convolutional Neural Networks with 48 layers deep. With InceptionV3, our model performance is significantly better despite having small amount of dataset. After 40 epoch, our model quickly achieved **0.9865 validation accuracy** and **0.0617 validation loss**
