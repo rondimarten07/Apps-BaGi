@@ -20,4 +20,4 @@ We create basic Object Detection model with 4 layers of convolutional neural net
 
 ## 2. Shirt, Shoes, Bag, and the Defected Dataset
 
-We collected dataset manually by scraping from Kaggle, Google images, and Roboflow. Also we label all of the image using roboflow for annotation. In total, we accumulated 1337 images. The dataset can be accessed through this [Link]
+We collected dataset manually by scraping from Kaggle, Google images, and Roboflow. Also we label all of the image using roboflow for annotation. In total, we accumulated 1337 images. The dataset can be accessed through this [Link](https://storage.googleapis.com/zurvin-bucket/dataset.tgz)
