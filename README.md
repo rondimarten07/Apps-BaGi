@@ -19,8 +19,8 @@ Here is the [link](https://drive.google.com.......) of BaGi App.
 #### Preview:
 
 <p align="center">
-  <a href="https://github.com/......">
-    <img src=".......">
+  <a href="https://github.com//rondimarten07/Apps-BaGi/blob/main/preview.jpeg">
+    <img src="preview.jpeg">
   </a>
 </p>
 
