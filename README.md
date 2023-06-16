@@ -34,6 +34,6 @@ Here are some libraries that we use on this project.
 ## Preview 
 <p align="center">
   <a href="https://github.com//rondimarten07/Apps-BaGi/blob/main/Preview.jpg">
-    <img src="Preview.jpg">
+    <img src="main/Preview.jpg">
   </a>
 </p>
