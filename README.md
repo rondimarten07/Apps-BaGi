@@ -1,82 +1,59 @@
-<p align="center">
-  <a href="https://github.com/rondimarten07/Apps-BaGi/blob/main/logo BaGi.png">
-    <img src="logo BaGi.png">
-  </a>
-</p>
+# Machine Learning Branch For Manduin Apps
 
-# BaGi Apps
+## Table of Contents
 
-This is a repository for BaGi Apps which is the final Product Based Capstone Project for Bangkit Academy 2023. This apps is created by team C23-PS459 with 6 students from 3 learning path such as Machine Learning, Mobile Development, and Cloud Computing.
+1. [Landmark Classification Model](https://github.com/LouisBay/manduin-apps/tree/machine-learning/Landmark_Recognition_Notebook)
+2. [Landmark Image Dataset](https://github.com/mrsambaga/Bangkit-Capstone-Dataset)
+3. [Tourism Destination Dataset](https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination)
+4. [TFLite Model](https://drive.google.com/drive/folders/1jzKucwzypVAmtW5rCzH4nj8Bdu1IsWSZ?usp=sharing)
 
-## About BaGi
+## 1. Landmark Classification Model
 
-BaGi, stands for Barang Guna Lagi, is an Android-based application designed for local (currently in Jakarta) sharing of used items. The app allows users to share pre-owned items such as shoes, bags, and clothes. BaGi incorporates machine learning technology to determine the suitability of items for uploading. If an item is deemed suitable, it can be uploaded to the application for others to claim and reuse. However, if an item is deemed unsuitable, it cannot be uploaded to the platform. BaGi promotes sustainability and encourages the local community to reduce waste by giving unused items a second chance through local sharing.<br>
+For landmark classification model, we created 2 kinds of model :
+1. Model made from scratch
+2. Model with transfer learning using InceptionV3.
 
-#### Download Link:
+**Model Made From Scratch**<br />
+For the first model, we made basic image classification model with 5 layers of convolutional neural network. With dataset around 665 total images for 6 classes, we achieved **0.9167 validation accuracy** and **0.3701 validation loss**. We understand that this dataset is far from sufficient on creating a perfect model since we struggled on tackling overfitting after several tuning.<br />
 
-Here is the [link](https://drive.google.com.......) of BaGi App.
+![image](Contents/Model1_Val_Acc.jpg)
 
-#### Preview:
+**Model with transfer learning using InceptionV3**<br />
+For the second model, we tried transfer learning using InceptionV3 model. InceptionV3 is an upgraded version from InceptionV1 which was introduced as GoogLeNet in 2014. As the name suggests it was developed by a team at Google. InceptionV3 architecture consist of Convolutional Neural Networks with 48 layers deep. With InceptionV3, our model performance is significantly better despite having small amount of dataset. After 40 epoch, our model quickly achieved **0.9865 validation accuracy** and **0.0617 validation loss**
 
-<p align="center">
-  <a href="https://github.com/......">
-    <img src=".......">
-  </a>
-</p>
-
-## Meet the Team 
-
-<b> Team ID : C22-PS028</b>
-
-|         Member                    |  Student ID  |        Path        |               University              |                                               
-| :------------------------------:  | :----------: | :----------------: |  :----------------------------------: |
-|  Pundi Razzaq Widodo              |  M172DSX1868 |  Machine Learning  |  Universitas Gunadarma                |
-|  Christhoper Klose                |  M172DSX2141 |  Machine Learning  |  Universitas Gunadarma                |
-|  Rondi                            |  A086DSX2072 | Mobile Development |  Sekolah Tinggi Teknologi Bandung     |
-|  Reza Anwar Sanusi                |  A103DSX1198 | Mobile Development |  STMIK Bandung                        |
-|  Zulvan Fadhillah                 |  C360DSX3670 |  Cloud Computing   |  Universitas Telkom                   |
-|  Indah Nurjanah                   |  C072DKY4145 |  Cloud Computing   |  Politeknik Negeri Sriwijaya          |
+![image](Contents/Model2_Val_Acc.jpg)
 
 
-## Repository Branches
+## 2. Landmark Image Dataset
 
-1. [main](https://github.com/rondimarten07/Apps-BaGi)- About Project
-2. [cloud-computing](https://github.com/rondimarten07/Apps-BaGi/tree/cloud-computing) - CC Project Repository
-3. [machine-learning](https://github.com/rondimarten07/Apps-BaGi/tree/machine-learning) - ML Project Repository
-4. [mobile-development](https://github.com/rondimarten07/Apps-BaGi/tree/mobile-development) - MD Project Repository
+We collected dataset manually by scraping from Google images. In total, we accumulated 2067 images for 15 landmarks. The distribution as follows:
 
-## Technologies
+1. Lawang Sewu : 115
+2. Candi Borobudur : 131
+3. Candi Prambanan : 194
+4. Masjid Agung Jawa Tengah : 111
+5. Tugu Jogja : 100
+6. Monjali : 88
+7. Besakih : 200
+8. Suroboyo : 216
+9. Garuda Wisnu Kencana : 100
+10. Monumen Nasional : 146
+11. Gedung Sate : 140
+12. Jam Gadang : 115
+13. Sam Poo Kong : 148
+14. Taman Ayun : 130
+15. Museum Fatahillah : 134
 
-1. <b>Machine Learning</b>
-   - TensorFlow Lite
-   - Python
-   - Keras
-   - Roboflow
-   - Kaggle
-2. <b>Android Development</b>
-   - Kotlin
-   - MVVM Architecture
-   - Retrofit (Networking)
-   - CameraX (Camera View)
-   - TensorFlow Lite (Machine Learning)
-3. <b>Cloud Computing</b>
-   - Cloud SQL (Server Database)
-   - Cloud Storage (Store Images)
-   - Cloud Run (Server API)
+Due to time limit and unavailable nearby tourism dataset for certain landmark, we only put 6 landmark in our final product which focused on landmark from Yogyakarta & Central Java (Lawang Sewu, Borobudur, Prambanan, Masjid Agung, Tugu Jogja, and Monjali).
 
-## Getting Started
+**Processing Technique**<br />
 
-- **Prerequisites**
+We use [Download All Images](https://chrome.google.com/webstore/detail/download-all-images/ifipmflagepipjokmbdecpmjbibjnakm?hl=en) chrome extension to download multiple images from Google simultaneously. After that, we can quickly detect duplicate images and remove them automatically using Image Hashing & Hamming Distance method with Python script from this [repository](https://github.com/moondra2017/Computer-Vision) (Credit : [moondra2017](https://github.com/moondra2017))
 
-  1.  Android Device (with Camera for detection)
-  2.  Internet Connection
+## 3. Tourism Destination Dataset
 
-- **Installation**
+We use Indonesia Tourism Destination dataset to get various information about tourism destination including landmark such as description, rate, coordinate, ticket price, etc. This dataset is used to create a list of closest nearby tourism destination from the detected landmark and put them in google map API. Futhermore, we use this dataset to create description and full information about each tourism destionation in the application. Dataset taken from Kaggle & can be accessed through this [link](https://www.kaggle.com/datasets/aprabowo/indonesia-tourism-destination). 
 
-  1.  Download the APK
-  2.  Install the APK
+## 4. TFLite Model
 
-- **Register & Login**
-
-  1.  Open Bagi Application
-  2.  Register into the application and Login with your Account
+For model deployment, we convert .h model into TFLite to make it smaller and compatible for mobile device. Our final TFLite model has size of 60mb & can be accessed through this [Google drive](https://drive.google.com/drive/folders/1jzKucwzypVAmtW5rCzH4nj8Bdu1IsWSZ?usp=sharing). 
