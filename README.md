@@ -11,7 +11,7 @@ In making the RESTful APIs we use Python 3 with the Flask Framework and MySQL fo
 Explanation for each endpoint that can be used :
 
 **Base URL :**
-> https://
+> https://apps-bagi-m55ykjfk2a-et.a.run.app
 
 # Register
 
