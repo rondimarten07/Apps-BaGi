@@ -23,7 +23,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.paging.ExperimentalPagingApi
 import com.rondi.bagiapp.R
 import com.rondi.bagiapp.data.remote.ApiResponse
 import com.rondi.bagiapp.databinding.FragmentUploadBinding
@@ -48,7 +47,6 @@ import kotlin.math.min
 
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
-@ExperimentalPagingApi
 class UploadFragment : Fragment() {
     private var _binding: FragmentUploadBinding? = null
     private val binding get() = _binding!!

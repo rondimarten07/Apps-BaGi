@@ -34,7 +34,7 @@ class MyItemsAdapter(private val myItemList: List<MyItem?>): RecyclerView.Adapte
                 description.text = myItem?.description
                 myItem?.photoUrl?.let { ivItemPhoto.setImageFromUrl(it) }
                 tvItemName.text = myItem?.name
-                tvItemNohp.text = myItem?.name
+                tvItemNohp.text = myItem?.nohp
                 tvItemDate.text = myItem?.createAt?.timeStamptoString()
             }
             itemView.setOnClickListener {

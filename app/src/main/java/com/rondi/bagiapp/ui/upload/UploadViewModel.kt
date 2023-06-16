@@ -3,7 +3,6 @@ package com.rondi.bagiapp.ui.upload
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.ExperimentalPagingApi
 import com.rondi.bagiapp.data.remote.ApiResponse
 import com.rondi.bagiapp.data.remote.response.UploadItemsResponse
 import com.rondi.bagiapp.data.repository.AuthRepository
@@ -16,7 +15,6 @@ import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
-@ExperimentalPagingApi
 class UploadViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val itemsRepository: ItemsRepository

@@ -24,13 +24,15 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/iv_myitem"
             android:layout_marginStart="@dimen/dimen_16dp"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:maxLines="2"
             tools:text="Title"
-            android:textSize="@dimen/dimen_24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
 
@@ -56,8 +58,8 @@
             android:layout_marginTop="@dimen/dimen_16dp"
             android:padding="8dp"
             android:textColor="#FF9800"
-            app:layout_constraintBottom_toBottomOf="@id/garis"
-            app:layout_constraintTop_toBottomOf="@id/description"/>
+            android:layout_marginBottom="@dimen/dimen_8dp"
+            app:layout_constraintBottom_toBottomOf="@id/garis" />
 
         <View
             android:id="@+id/garis"

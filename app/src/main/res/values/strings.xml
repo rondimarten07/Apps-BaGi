@@ -114,4 +114,7 @@
     <string name="your_item">this item is yours</string>
     <string name="description_error">Descriptions cannot be longer than 255 characters</string>
     <string name="message_wa_notfound">WhatsApp number not found</string>
+    <string name="message_email_emphty">Email cannot be empty</string>
+    <string name="message_pw_empghty">Password cannot be emphty</string>
+    <string name="message_register_emphty">all data must be filled in</string>
 </resources>

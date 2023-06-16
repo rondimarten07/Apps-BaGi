@@ -60,41 +60,51 @@ class LoginFragment : Fragment() {
         val password = binding.edLoginPassword.text.toString()
         setLoadingState(true)
 
+        if(email.isEmpty()){
+            showOKDialog(getString(string.title_message), getString(string.message_email_emphty))
+            setLoadingState(false)
+        }else if(password.isEmpty()){
+            showOKDialog(getString(string.title_message), getString(string.message_pw_empghty))
+            setLoadingState(false)
+        }else{
 
-        lifecycleScope.launchWhenResumed {
-            if (loginJob.isActive) loginJob.cancel()
+            lifecycleScope.launchWhenResumed {
+                if (loginJob.isActive) loginJob.cancel()
 
-            loginJob = launch {
-                loginviewModel.userLogin(email, password).collect { result ->
-                    result.onSuccess { credentials ->
+                loginJob = launch {
+                    loginviewModel.userLogin(email, password).collect { result ->
+                        result.onSuccess { credentials ->
 
-                        credentials.loginResult?.token?.let { token ->
-                            val userId = credentials.loginResult.userId
-                            loginviewModel.saveAuthToken(token)
-                            userId?.let { loginviewModel.saveAuthUserId(it) }
-                            Intent(requireContext(), MainActivity::class.java).also { intent ->
-                                intent.putExtra(EXTRA_TOKEN, token)
-                                intent.putExtra(EXTRA_USER_ID, userId)
-                                startActivity(intent)
-                                requireActivity().finish()
+                            credentials.loginResult?.token?.let { token ->
+                                val userId = credentials.loginResult.userId
+                                loginviewModel.saveAuthToken(token)
+                                userId?.let { loginviewModel.saveAuthUserId(it) }
+                                Intent(requireContext(), MainActivity::class.java).also { intent ->
+                                    intent.putExtra(EXTRA_TOKEN, token)
+                                    intent.putExtra(EXTRA_USER_ID, userId)
+                                    startActivity(intent)
+                                    requireActivity().finish()
+                                }
                             }
+
+                            Toast.makeText(
+                                requireContext(),
+                                getString(string.login_success_message),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
-                        Toast.makeText(
-                            requireContext(),
-                            getString(string.login_success_message),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                        result.onFailure {
+                            showOKDialog(getString(string.title_message), getString(string.message_failed_login))
 
-                    result.onFailure {
-                        showOKDialog(getString(string.title_message), getString(string.message_failed_login))
-
-                        setLoadingState(false)
+                            setLoadingState(false)
+                        }
                     }
                 }
             }
         }
+
+
 
     }
 

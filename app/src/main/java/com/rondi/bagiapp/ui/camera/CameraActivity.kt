@@ -13,15 +13,11 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.paging.ExperimentalPagingApi
 import com.rondi.bagiapp.R
 import com.rondi.bagiapp.databinding.ActivityCameraBinding
-import com.rondi.bagiapp.ui.profile.UpdateProfile
 import com.rondi.bagiapp.ui.upload.UploadFragment
 import com.rondi.bagiapp.utils.createFile
-import dagger.hilt.android.AndroidEntryPoint
 
-@ExperimentalPagingApi
 class CameraActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCameraBinding
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA

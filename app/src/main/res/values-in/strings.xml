@@ -114,4 +114,7 @@
     <string name="your_item">ini item milik mu</string>
     <string name="description_error">Deskripsi tidak boleh lebih dari 255 karakter</string>
     <string name="message_wa_notfound">Nomor Whatsapp tidak ditemukan</string>
+    <string name="message_email_emphty">Email Tidak boleh kosong</string>
+    <string name="message_pw_empghty">Password Tidak boleh kosong</string>
+    <string name="message_register_emphty">Semua data harus di isi</string>
 </resources>

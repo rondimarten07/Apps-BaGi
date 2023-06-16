@@ -60,38 +60,47 @@ class RegisterFragment : Fragment() {
         val password = binding.edRegisterPassword.text.toString()
         setLoadingState(true)
 
-        if (phone.startsWith("+62")){
+        if (name.isEmpty() && email.isEmpty() && phone.isEmpty() && username.isEmpty() && password.isEmpty()) {
+            showOKDialog(
+                getString(R.string.title_message),
+                getString(R.string.message_register_emphty)
+            )
+            setLoadingState(false)
+        } else if (!phone.startsWith("+62")) {
+            showOKDialog(getString(R.string.title_message), "Nomor HP harus diawali +62")
+            setLoadingState(false)
+        } else {
+
             lifecycleScope.launchWhenResumed {
                 if (registerJob.isActive) registerJob.cancel()
 
                 registerJob = launch {
-                    viewModel.userRegister(name, email, phone, username, password).collect { result ->
-                        result.onSuccess {
-                            Toast.makeText(
-                                requireContext(),
-                                getString(R.string.registration_success_message),
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    viewModel.userRegister(name, email, phone, username, password)
+                        .collect { result ->
+                            result.onSuccess {
+                                Toast.makeText(
+                                    requireContext(),
+                                    getString(R.string.registration_success_message),
+                                    Toast.LENGTH_SHORT
+                                ).show()
 
-                            // Automatically navigate user back to the login page
-                            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
-                        }
+                                // Automatically navigate user back to the login page
+                                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                            }
 
-                        result.onFailure {
-                            Snackbar.make(
-                                binding.root,
-                                getString(R.string.registration_error_message),
-                                Snackbar.LENGTH_SHORT
-                            ).show()
-                            setLoadingState(false)
+                            result.onFailure {
+                                Snackbar.make(
+                                    binding.root,
+                                    getString(R.string.registration_error_message),
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
+                                setLoadingState(false)
+                            }
                         }
-                    }
                 }
             }
-        }else{
-            showOKDialog(getString(R.string.title_message), "Nomor HP harus diawali +62" )
-            setLoadingState(false)
         }
+
 
     }
 

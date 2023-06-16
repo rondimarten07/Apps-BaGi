@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rondi.bagiapp.R
 import com.rondi.bagiapp.data.remote.ApiResponse
@@ -18,7 +16,6 @@ import com.rondi.bagiapp.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-@ExperimentalPagingApi
 @AndroidEntryPoint
 class MyItemFragment : Fragment() {
     private var _binding: FragmentMyitemBinding? = null
