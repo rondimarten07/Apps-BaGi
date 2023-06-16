@@ -5,7 +5,7 @@
 For object Detection model, we created model made from scratch
 
 **Model Made From Scratch**<br />
-We create basic Object Detection model with 5 layers of convolutional neural network. With dataset around 665 total images for 6 classes, we achieved **0.9167 validation accuracy** and **0.3701 validation loss**. We understand that this dataset is far from sufficient on creating a perfect model since we struggled on tackling overfitting after several tuning.<br />
+We create basic Object Detection model with 4 layers of convolutional neural network. With dataset around 1337 total images for 4 classes, we achieved **0.8951 validation accuracy** and **0.7365 validation loss**. The dataset we use is far from sufficient to create a good model and we still struggled on handling the overfitting after several times tuning the model.<br />
 
 ![image](Contents/Model1_Val_Acc.jpg)
 
