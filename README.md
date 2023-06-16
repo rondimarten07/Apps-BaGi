@@ -14,7 +14,7 @@ BaGi, stands for Barang Guna Lagi, is an Android-based application designed for 
 
 #### Download Link:
 
-Here is the [link](https://drive.google.com.......) of BaGi App.
+Here is the [link](https://drive.google.com/file/d/1-O8ag6GXomFq7pwmqo2r2WFugRyrk_1G/view?usp=drivesdk) of BaGi App.
 
 #### Preview:
 
